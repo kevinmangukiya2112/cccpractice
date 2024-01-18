@@ -6,6 +6,6 @@
        $middlename="Sureshbhai";
        $lastname="Mangukiya";
        $name="$firstname $middlename $lastname";
-       print_r($name);
-
+       // print_r($name);
+       echo"kevin";
 ?>
