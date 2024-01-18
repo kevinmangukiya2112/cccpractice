@@ -94,16 +94,16 @@
     // print_r(strcoll($str1,$str2));
 
     // Finds the length of the initial segment not matching a mask  ?query for upper boundry
-    // $strmask="kevin mangukiya";
+    $strmask="kevin mangukiya";
     // print_r(strcspn($strmask,"m"));
     // echo"<br>";
     // print_r(strcspn($strmask,"m",0,4));
     // echo"<br>";
-    // print_r(strcspn($strmask,"m",9,11));
+    print_r(strcspn($strmask,"m",8,11));
 
     // case insensitive search    ? query for before needle
     // $insestr="kevin MANGUKIYA";
-    // print_r(stristr($insestr,"mangukiya",));
+    // print_r(stristr($insestr,"mangukiya"));
 
     // convert first character of string into upper case
     // $fustr="kevin mangukiya";
