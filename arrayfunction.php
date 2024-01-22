@@ -53,7 +53,7 @@
 
 // array access 
 
-$arc1=array("kevin","mangukiya","GEC","Bhavnagar");
+// $arc1=array("kevin","mangukiya","GEC","Bhavnagar");
 
 // // count --> count the number of element in array
 // print_r(count($arc1));
@@ -185,14 +185,17 @@ $arc1=array("kevin","mangukiya","GEC","Bhavnagar");
 // $a=array(10,15,20);
 // print_r(array_reduce($a,"myfunction"));  // without initiate 
 
-function myfunction($v1,$v2)
-{
-return $v1+$v2;
-}
-$a=array(10,15,20);
-print_r(array_reduce($a,"myfunction",5)); // with initiate
+// function myfunction($v1,$v2)
+// {
+// return $v1+$v2;
+// }
+// $a=array(10,15,20);
+// print_r(array_reduce($a,"myfunction",5)); // with initiate
 
+// The array_merge_recursive() function merges one or more arrays into one array. --> The difference between this function and the array_merge() function is when two or more array elements have the same key. Instead of override the keys, the array_merge_recursive() function makes the value as an array.
 
-
+$a1=array(1=>"kevin","hello"=>"sureshbhai",2=>"mangukiya");
+$a2=array(3=>"ksm","hello"=>"sureshbhai",4=>"mks");
+print_r(array_merge_recursive($a1,$a2));
 
 ?>
