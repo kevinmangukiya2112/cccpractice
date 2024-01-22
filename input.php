@@ -7,7 +7,8 @@
 </head>
 <body>
     <form action="inputoutputpercent.php" method="get">
-       higherpercent:<input type="number" name="higherpercent">
+       <lable id="hp">higherpercent</lable>
+       <input type="number" name="higherpercent" id="hp">
        <input type="submit">
     </form>
 </body>
