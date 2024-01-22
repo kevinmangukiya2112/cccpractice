@@ -4,8 +4,8 @@ function fibonacci($next){
     $first=0;
     $second=1;
     echo $first ," ",$second ," ";
-    for($i=2;$i<=$next;$i++){
-        for($j=2;$j<=$next-1;$j++){
+    for($i=3;$i<=$next;$i++){
+        for($j=3;$j<=$next;$j++){
             $i=$first+$second;
             echo $i ," ";
             $first=$second;
