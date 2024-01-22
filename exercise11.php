@@ -1,0 +1,13 @@
+<?php
+$arr=array(12,32,9,8,23,11);
+$temp=0;
+for($i=0;$i<sizeof($arr);$i++){
+    for($j=0;$j<sizeof($arr)-1;$j++){
+        if($arr[$i]<$arr[$j]){
+            $temp=$arr[$i];
+            $arr[$i]=$arr[$j];
+            $arr[$j]=$temp;
+        }
+    }
+}
+print_r($arr);
