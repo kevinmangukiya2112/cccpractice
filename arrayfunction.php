@@ -53,7 +53,7 @@
 
 // array access 
 
-// $arc1=array("kevin","mangukiya","GEC","Bhavnagar");
+$arc1=array("ba"=>"kevin","aa"=>"mangukiya","ab"=>"GEC","bb"=>"Bhavnagar");
 
 // // count --> count the number of element in array
 // print_r(count($arc1));
@@ -127,9 +127,9 @@
 // echo"<br>";
 
 // // ksort --> sort an assosiative array by keys 
-// ksort($arc1);
-// print_r($arc1);
-// echo"<br>";
+ksort($arc1);
+print_r($arc1);
+echo"<br>";
 
 // // arsort --> sort an assosiative array in reverse order by value 
 // arsort($arc1);
@@ -194,8 +194,8 @@
 
 // The array_merge_recursive() function merges one or more arrays into one array. --> The difference between this function and the array_merge() function is when two or more array elements have the same key. Instead of override the keys, the array_merge_recursive() function makes the value as an array.
 
-$a1=array(1=>"kevin","hello"=>"sureshbhai",2=>"mangukiya");
-$a2=array(3=>"ksm","hello"=>"sureshbhai",4=>"mks");
-print_r(array_merge_recursive($a1,$a2));
+// $a1=array(1=>"kevin","hello"=>"sureshbhai",2=>"mangukiya");
+// $a2=array(3=>"ksm","hello"=>"sureshbhai",4=>"mks");
+// print_r(array_merge_recursive($a1,$a2));
 
 ?>

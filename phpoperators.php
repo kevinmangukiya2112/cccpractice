@@ -2,8 +2,8 @@
 <body>
 <?php
 // 1. Arithmetic Operators:
-    //$a=10;
-    //$b=23;
+    // $a=10;
+    // $b=23;
    //1. Addition:print_r(
     // print_r($a + $b);
     // echo"<br>";
@@ -20,7 +20,7 @@
     // print_r($a % $b);
     // echo"<br>";
    //6. Exponentiation: (PHP 5.6 and later) ? query 
-    // print_r($a $b);
+    // print_r($a**$b);
 
 // 2. Assignment Operators:
 
