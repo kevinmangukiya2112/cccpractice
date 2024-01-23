@@ -1,0 +1,32 @@
+label{
+    cursor: default;
+    color: rgb(131, 127, 127);
+}
+input,option,select{
+    color: rgb(131, 127, 127);
+}
+fieldset{
+    border: 2px solid aqua;
+}
+/* body{
+    background-image:url(chris-spalton-MgVEj3FnqeU-unsplash.jpg);
+    background-repeat: no-repeat;
+    background-size: 1600px 1000px;
+} */
+legend{
+    color: black;
+}
+form{
+    padding-right: 30%;
+}
+button:hover{
+    vertical-align: center;
+    background-color: black;
+    color: whitesmoke;
+}
+button{
+    background-color: aliceblue;
+    color: black;
+}
+
+

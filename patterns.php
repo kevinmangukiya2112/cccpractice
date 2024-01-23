@@ -24,9 +24,26 @@ for($i=1; $i<=$a; $i++){
     for($j=1;$j<=$a; $j++){
         if($j<=($a+1)-$i && $j>=($a-10)+$i){
             echo $j;
+        }elseif($j>=($a-$i) && $j<=($a-9)+$i) {
+            echo $j;
         }    
     }
-    $k+=2;
+    $k+=1;
+    echo "<br>";
+}
+
+$a=11;
+$k=0;
+for($i=1; $i<=$a; $i++){ 
+    print_r(str_repeat("&nbsp;",$k)); 
+    for($j=1;$j<=$a; $j++){
+        if($j<=($a+1)-$i && $j>=($a-11)+$i){
+            echo $j;
+        }elseif($j>=($a-$i)+1 && $j<=($a-11)+$i) {
+            echo $j;
+        }  
+    }
+    $k+=1;
     echo "<br>";
 }
 
