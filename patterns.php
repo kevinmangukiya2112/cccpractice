@@ -24,7 +24,7 @@ for($i=1; $i<=$a; $i++){
     for($j=1;$j<=$a; $j++){
         if($j<=($a+1)-$i && $j>=($a-10)+$i){
             echo $j;
-        }elseif($j>=($a-$i) && $j<=($a-9)+$i) {
+        }elseif($j>=($a-$i)+1 && $j<=($a-10)+$i) {
             echo $j;
         }    
     }

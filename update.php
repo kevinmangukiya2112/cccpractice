@@ -1,3 +1,9 @@
+<?php
+include("./sql_functions.php");
+include("./connection.php");
+echo "hello guys";
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,20 +17,20 @@
 <body>
     <div>
     <p>FORM</p>
-    <form action="ccc_practice.php" method="post">
+    <form action="updateform.php" method="post">
         <fieldset>
             <legend>Basic details</legend>
             <label for="name">Product_Name:</label>
-            <input type="text" id="name" name="name">&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="text" id="name" name="nam[Product_name:]">&nbsp;&nbsp;&nbsp;&nbsp;
             <label for="psku">SKU:</label>
-            <input type="text" id="psku" name="psku"><br><br>
+            <input type="text" id="psku" name="nam[SKU:]"><br><br>
             <label for="ptype">Product_type:</label><br>
-            <input type="radio" id="stype" name="ptype" value="Simple">
+            <input type="radio" id="stype" name="nam[Product_type:]" value="Simple">
             <label for="stype">Simple</label>
-            <input type="radio" id="btype" name="ptype" value="Bundle">
+            <input type="radio" id="btype" name="nam[Product_type:]" value="Bundle">
             <label for="btype">Bundle</label><br><br>
             <label for="category">Category</label>
-            <select id="category" name="select" >
+            <select id="category" name="nam[Category]" >
                 <option value="Bar&Game Room">Bar&Game Room
                 </option>
                 <option value="Bedroom">Bedroom
@@ -45,7 +51,7 @@
                 </option>
             </select> &nbsp; &nbsp;
             <label for="status">Status</label>
-            <select id="status" name="status">
+            <select id="status" name="nam[Status]">
                 <option value="Enabled">Enabled
                 </option>
                 <option value="Disabled">Disabled
@@ -55,20 +61,20 @@
         <fieldset>
             <legend>Costs</legend>
             <label for="mcost">Manufacturer_Cost:</label>
-            <input type="text" id="mcost" name="mcost">&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="text" id="mcost" name="nam[Manufacturer_cost:]">&nbsp;&nbsp;&nbsp;&nbsp;
             <label for="scost">Shipping_Cost:</label>
-            <input type="text" id="scost" name="scost"><br><br>
+            <input type="text" id="scost" name="nam[Shipping_Cost:]"><br><br>
             <label for="tcost">Total_Cost(item):</label>
-            <input type="text" id="tcost" name="tcost">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="text" id="tcost" name="nam[Total_Cost(item):]">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <label for="pcost">Price</label>
-            <input type="text" id="pcost" name="pcost">
+            <input type="text" id="pcost" name="nam[Price]">
         </fieldset>
         <fieldset>
             <legend>Dates</legend>
             <label for="cdate">Created_At</label>
-            <input type="date" id="cdate" name="cdate"><br>
+            <input type="date" id="cdate" name="nam[Created_At]"><br>
             <label for="udate">Updated_At</label>
-            <input type="date" id="udate" name="udate"><br>
+            <input type="date" id="udate" name="nam[Updated_At]"><br>
         </fieldset>
         <button type="submit">Submit </button>
     </form>
@@ -76,17 +82,3 @@
 </body>
 
 </html>
-<!-- <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-
-try {
-    $conn = new PDO("mysql:host=$servername;dbname=ccc_practice", $username, $password);
-    // set the PDO error mode to exception
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    echo "Connected successfully";
-  } catch(PDOException $e) {
-    echo "Connection failed: " . $e->getMessage();
-  }
-?> -->

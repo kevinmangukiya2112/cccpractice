@@ -34,14 +34,11 @@
         $created_at=$_POST['cdate'];
         $Updated_at=$_POST['udate'];
 
-        
-
-		
 		// Performing insert query execution
 		// here our table name is college
 		$sql = "INSERT INTO ccc_practice VALUES ('$Product_Name', 
 			'$SKU','$Product_type','$category','$Status','$Manufacturer_cost','$Shipping_cost','$Total_cost',
-            '$Price','$created_at','$Updated_at')";
+            '$Price','$created_at','$Updated_at');";
 		
 		if(mysqli_query($conn, $sql)){
 			echo "<h3>data stored in a database successfully."
