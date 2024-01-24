@@ -23,6 +23,7 @@ $scl=$conn->query($sql);
 if($scl->num_rows >0){
     while($raws=$scl->fetch_assoc()){
      echo "<tr>
+
      <td>".$raws['Product_name:']."</td>
      <td>".$raws['SKU:']."</td>
      <td>".$raws['Product_type:']."</td>
@@ -35,7 +36,7 @@ if($scl->num_rows >0){
      <td>".$raws['Created_At']."</td>
      <td>".$raws['Updated_At']."</td>
      <td><a href='./update.php'>update</a></td>
-     <td><a href='./delete.php'>delete</a></td>
+     <td><a href='./delete.php?id=".$raws['id']."'>delete</a></td>
      </tr>";
     }
 }

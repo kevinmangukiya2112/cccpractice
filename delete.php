@@ -1,6 +1,10 @@
 <?php
 include("./sql_functions.php");
 include("./connection.php");
-$data=$_POST['nam'];
-$sql=delete('ccc_practice',$data);
+$data=$_GET['id'];
+$sql=delete('ccc_practice',['id'=>$data]);
+$scl=$conn->query($sql);
+if($scl===true){
+    echo "data deleted successfully";
+}
 ?>
