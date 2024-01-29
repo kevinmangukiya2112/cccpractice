@@ -33,4 +33,8 @@ function delete($tablename,$where){
     }$con=implode("AND",$con);
     return "DELETE FROM {$tablename} WHERE {$con};";
 }
+function last10record($tablename){
+    return "SELECT * FROM {$tablename} ORDER BY id DESC LIMIT 10;";
+
+}
 ?>

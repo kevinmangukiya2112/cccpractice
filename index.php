@@ -1,24 +1,21 @@
 <?php
 include("./connection.php");
 include("./sql_functions.php");
-$sql=select('ccc_practice');
+$sql=last10record('ccc_practice');
 echo "
-<table border=2px>
-<tr>
-<td>productname</td>
-<td>sku</td>
-<td>producttype</td>
-<td>category</td>
-<td>status</td>
-<td>Manufecturer cost</td>
-<td>transportation cost</td>
-<td>total cost</td>
-<td>price</td>
-<td>CreatedAt</td>
-<td>UpdatedAt</td>
-<td>update</td>
-<td>delete</td>
-</tr>";
+<ol><li>productname</li>
+<li>sku</li>
+<li>producttype</li>
+<licategory</li>
+<li>status</li>
+<li>Manufecturer cost</li>
+<li>transportation cost</li>
+<li>total cost</li>
+<li>price</li>
+<li>CreatedAt</li>
+<li>UpdatedAt</li></ol>
+";
+echo"<table border=2px>";
 $scl=$conn->query($sql);
 if($scl->num_rows >0){
     while($raws=$scl->fetch_assoc()){
@@ -34,11 +31,8 @@ if($scl->num_rows >0){
      <td>".$raws['Price']."</td>
      <td>".$raws['Created_At']."</td>
      <td>".$raws['Updated_At']."</td>
-     <td><a href='./update.php?id=".$raws['id']."'>update</a></td>
-     <td><a href='./delete.php?id=".$raws['id']."'>delete</a></td>
      </tr>";
     }
 }
 ?>
 </table>
-<a href='./index.php'>last 10 records</a>

@@ -24,7 +24,7 @@
             <input type="radio" id="btype" name="ptype" value="Bundle">
             <label for="btype">Bundle</label><br><br>
             <label for="category">Category</label>
-            <select id="category" name="select" >
+            <select id="category" name="select">
                 <option value="Bar&Game Room">Bar&Game Room
                 </option>
                 <option value="Bedroom">Bedroom
