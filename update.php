@@ -17,7 +17,7 @@ include("./connection.php");
     <div>
     <p>FORM</p>
     <?php
-    $id=$_GET['id'];
+   $id=$_GET['id'];
    $sql="SELECT * FROM ccc_practice WHERE id=$id";
 //    print_r($sql);
    $scl=$conn->query($sql);
