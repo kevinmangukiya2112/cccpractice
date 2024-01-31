@@ -1,7 +1,9 @@
 <?php
 include("./connection.php");
 include("./sqlfunctions.php");
-$sql=last20record('ccc_practice');
+$obj=new queryfunctions();
+$obj1=new queryexecution();
+$sql=$obj->last20record('ccc_practice');
 echo "<table border=2px>
 <tr><th>productname</th>
 <th>sku</th>
@@ -9,7 +11,7 @@ echo "<table border=2px>
 <th>update</th>
 <th>delete</th></tr>
 ";
-$scl=$conn->query($sql);
+$scl=$obj1->query($conn,$sql);
 if($scl->num_rows >0){
     while($raws=$scl->fetch_assoc()){
      echo "<tr>

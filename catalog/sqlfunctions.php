@@ -1,6 +1,9 @@
 <?php
+include("./connection.php");
 // insert query function
-function insert($tablename,$data){
+class queryfunctions{
+// insert query function
+public function insert($tablename,$data){
     $colums=$values=[];
      foreach($data as $_field =>$_values){
         $colums[]="`{$_field}`";
@@ -12,7 +15,7 @@ function insert($tablename,$data){
 }
 
 // update query function
-function update($tablename,$data,$where){
+public function update($tablename,$data,$where){
     $colums=$con=[];
     foreach($data as $key=>$values){
         $colums[]="`{$key}`="."'". addslashes($values) . "'";
@@ -23,18 +26,25 @@ function update($tablename,$data,$where){
     return "UPDATE {$tablename} SET {$colums} WHERE {$con} ";
 }
 // select query function
-function select($tablename){
+public function select($tablename){
     return "SELECT * FROM {$tablename};";
 }
-function delete($tablename,$where){
+public function delete($tablename,$where){
     $con=[];
     foreach($where as $key=>$values){
         $con[]="`{$key}`=". "'". addslashes($values) . "'"; 
     }$con=implode("AND",$con);
     return "DELETE FROM {$tablename} WHERE {$con};";
 }
-function last20record($tablename){
+public function last20record($tablename){
     return "SELECT * FROM {$tablename} ORDER BY id DESC LIMIT 20;";
 
+}
+}
+
+class queryexecution{
+    public function query($conn,$query){
+         return $conn->query($query);
+    }
 }
 ?>

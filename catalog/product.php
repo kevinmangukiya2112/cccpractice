@@ -1,6 +1,7 @@
 <?php
 include("./sqlfunctions.php");
 include("./connection.php");
+$obj1=new queryexecution();
 // echo "hello guys";
 
 ?>
@@ -54,7 +55,7 @@ include("./connection.php");
     else{
         $sql="SELECT * FROM ccc_practice WHERE id=$id";
         print_r($sql);
-        $scl=$conn->query($sql);
+        $scl=$obj1->query($conn,$sql);
         $raws=$scl->fetch_assoc();
         echo '<form action="./updateform.php?id='.$id.'" method="post">
         <fieldset>
