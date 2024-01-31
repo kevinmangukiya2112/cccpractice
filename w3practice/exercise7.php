@@ -31,17 +31,20 @@ class Rectangle extends Shape {
 // Example Usage:
 $shap=new shape();
 $circle = new Circle();
-$circle->radius = 5;
+$circle->radius = 10;
 
 $rectangle = new Rectangle();
-$rectangle->length = 4;
+$rectangle->length = 5;
 $rectangle->width = 6;
 
+echo "Circle Perimeter: " . $circle->calculatePerimeter() . "<br>";
 echo "Circle Area: " . $circle->calculateArea() . "<br>";
 echo "Total Dimentions=";
 print_r($shap->dimentions);
 echo"<br>";
+echo "<hr>";
 echo "Rectangle Perimeter: " . $rectangle->calculatePerimeter() . "<br>";
+echo "Rectangle Area: " . $rectangle->calculateArea() . "<br>";
 echo "Total Dimentions=";
 print_r($shap->dimentions);
 echo"<br>";
