@@ -1,0 +1,23 @@
+<?php
+class Employee {
+        public $name;
+        public $position;
+        public $salary;
+
+        public function calculateYearlyBonus() {
+            return $this->salary * 0.1; // Assuming a 10% bonus
+        }
+    }
+
+    // Example Usage:
+    $employee = new Employee();
+    $employee->name = "Alice";
+    $employee->position = "Manager";
+    $employee->salary = 50000;
+
+    $employee->name="Kevin";
+    $employee->position="Devloper";
+    $employee->salary=10000;
+
+    echo $employee->calculateYearlyBonus();
+?>
