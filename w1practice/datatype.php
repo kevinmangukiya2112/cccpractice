@@ -30,6 +30,10 @@
    $nul=NULL;
    var_dump($nul);
    echo"<br>";
+
+   // date
+   $date=date ("dS F Y g:i A");
+   echo "today date is $date";
 ?>
 </body>
 </html>

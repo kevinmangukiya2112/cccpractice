@@ -85,7 +85,7 @@
     //22. Logical OR:
     //var_dump($a || $b);
     //echo"<br>";
-    //23. Logical NOT:v
+    //23. Logical NOT:
     //var_dump(!$a);
     //echo"<br>";
 

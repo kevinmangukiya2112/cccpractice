@@ -1,7 +1,7 @@
 <?php
 include("./connection.php");
 include("./sql_functions.php");
-$obj=new sqlfunctions();
+$obj=new queryfunctions();
 $sql=$obj->last10record('ccc_practice');
 echo "
 <ol><li>productname</li>

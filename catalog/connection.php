@@ -1,8 +1,13 @@
 <?php
-$conn=mysqli_connect("localhost","root","","ccc_practice");
-// Check connection
-if($conn === false){
-    die("ERROR: Could not connect. "
-        . mysqli_connect_error());
+function conn(){
+$server="localhost";
+$username="root";
+$password="";
+$database="ccc_practice";
+
+return mysqli_connect($server,$username,$password,$database);
+if(!$conn){
+    return die("connection failed:".mysqli_connect_error());
+}
 }
 ?>

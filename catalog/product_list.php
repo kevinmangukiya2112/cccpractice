@@ -1,28 +1,42 @@
 <?php
-include("./connection.php");
-include("./sqlfunctions.php");
-$obj=new queryfunctions();
-$obj1=new queryexecution();
-$sql=$obj->last20record('ccc_practice');
-echo "<table border=2px>
-<tr><th>productname</th>
-<th>sku</th>
-<th>category</th>
-<th>update</th>
-<th>delete</th></tr>
-";
-$scl=$obj1->query($conn,$sql);
-if($scl->num_rows >0){
-    while($raws=$scl->fetch_assoc()){
-     echo "<tr>
-     <td>".$raws['Product_name:']."</td>
-     <td>".$raws['SKU:']."</td>
-     <td>".$raws['Category']."</td>
-     <td><a href='./product.php?id=".$raws['id']."'>update</a></td>
-     <td><a href='./delete.php?id=".$raws['id']."'>delete</a></td>
-     </tr>";
-    }
-}
+//include ('connection.php');
+include ('functions.php');
+include ('object.php');
 ?>
-</table>
-<button><a href="product.php?id=">Add data</a></button>
+<html>
+    <body>
+       
+        <table border="0" align="center" style="background-color:lightgrey; border-collapse: separate;
+        border-spacing: 2em 1em;">
+            <tr>
+                <th>Name</th>
+                <th>SKU</th>
+                <th>Category</th>
+            </tr>
+            <?php
+                
+                $obj=new func();
+                $sql=$obj->select("ccc_practice","*",['order_by' => ['id DESC'],'where' => [], 'limit' => ['20']]);
+                $obj=new query_execute();
+                $row=$obj->select($sql);
+                $obj1=new Data_Collection_Object();
+                foreach($row as $temp){
+                    $obj1->addData($temp);
+                }           
+                foreach($obj1->getData() as $data){
+                ?>
+                <tr>
+                    <td><?php echo $data->getp_name();?></td>
+                    <td><?php echo $data->getsku();?></td>
+                    <td><?php echo $data->getcategory();?></td>
+                    <td><button typr="button"><a href="form.php?id=<?php echo $data->getid();?>">update</a></button></td>
+                    <td><button typr="button"><a href="delete.php?id=<?php echo $data->getid();?>">delete</a></button></td>
+                </tr>
+                <?php
+                }
+                echo' <tr>
+                <td colspan=5 align="center"><button type="button" style="background-color:red"> <a href="form.php">add data</a></button></td></tr>';
+                echo "</table>";
+                ?>
+    </body>
+</html>

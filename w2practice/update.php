@@ -2,6 +2,7 @@
 include("./sql_functions.php");
 include("./connection.php");
 // echo "hello guys";
+$obj=new queryfunctions();
 
 ?>
 <!DOCTYPE html>
@@ -18,7 +19,7 @@ include("./connection.php");
     <p>FORM</p>
     <?php
    $id=$_GET['id'];
-   $sql="SELECT * FROM ccc_practice WHERE id=$id";
+   $sql=$obj->selectbyid('ccc_practice',['id'=>$id]);
 //    print_r($sql);
    $scl=$conn->query($sql);
    $raws=$scl->fetch_assoc();

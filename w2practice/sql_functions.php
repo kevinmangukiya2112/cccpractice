@@ -38,5 +38,12 @@ function last10record($tablename){
     return "SELECT * FROM {$tablename} ORDER BY id DESC LIMIT 10;";
 
 }
+function selectbyid($tablename,$where){
+    $con=[];
+        foreach ($where as $key=>$value){
+         $con[]="`{$key}`="."'". addslashes($value)."'";
+        }$con=implode("AND",$con);
+        return "SELECT * FROM {$tablename} WHERE {$con};";
+}
 }
 ?>

@@ -59,8 +59,8 @@ class book2{
     }
 }
 $obj=new book1();
-$obj->name="BHAWDATGEETA";
-$obj->author="KRISHNA";
+$obj->name="BHAGWATGEETA";
+$obj->author="VYAS";
 $obj1=new book1();
 $obj1->name="RAMAYANA";
 $obj1->author="VALMIKI";
