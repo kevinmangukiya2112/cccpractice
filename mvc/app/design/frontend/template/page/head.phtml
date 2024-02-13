@@ -1,12 +1,19 @@
-<?php $js=$this->getJs();?>
+<?php $js=$this->getJs();
+      $css=$this->getCss();
+?>
 <?php if (count($js)):?>
-<?php foreach ($js as $Js):?>
-<script src="<?php echo $Js ?>"></script>
-<?php endforeach; endif;?>
+<?php foreach ($js as $_js):?>
+<script src="<?php echo $_js ?>"></script>
+<?php endforeach; ?> 
+<?php endif;?>
 
-<?php foreach ($this->getCss() as $css):?>
-    <link rel="stylesheet" src="<?php echo $css ?>"></link>
+
+<?php if(count($css)):?>
+<?php foreach ($css as $_css):?>
+    <link rel="stylesheet" src="<?php echo $_css ?>"></link>
 <?php endforeach;?>
+<?php endif;?>
+
 
 
 
