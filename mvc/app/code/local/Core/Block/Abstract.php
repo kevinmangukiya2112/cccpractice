@@ -1,5 +1,5 @@
 <?php
-class Core_Block_Abstract{
+class Core_Block_Abstract {
     public function setTemplate($template){
 
     }
@@ -41,7 +41,11 @@ class Core_Block_Abstract{
     }
 
     public function render(){
-        
+        // echo Mage::getBaseDir('app');
+        // echo $this->getTemplate();
+        include Mage::getBaseDir('app').'/design/frontend/template/' .$this->getTemplate();
+
+        //C:\xampp\htdocs\phppractice\mvc\app\design\frontend\tempalte\core/1column.phtml
     }
 }
 ?>
