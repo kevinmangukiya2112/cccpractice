@@ -37,7 +37,7 @@ class Core_Block_Abstract {
     }
 
     public function getRequest(){
-
+      return Mage::getmodel('core/request');
     }
 
     public function render(){

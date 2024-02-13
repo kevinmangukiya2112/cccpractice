@@ -3,7 +3,15 @@
  {
     public function indexAction(){
         // echo dirname(__FILE__);
-        $this->getLayout()->toHtml();
+        $layout=$this->getLayout();
+        $layout->getChild('head')->addJs('js/page.js');
+        $layout->getChild('head')->addJs('js/head.js');
+        $layout->getChild('head')->addCss('css/page.css');
+        $layout->getChild('head')->addCss('css/head.css');
+        // echo "<pre>";
+        // print_r($layout);
+        return $layout->toHtml();
+        
 
     }
 

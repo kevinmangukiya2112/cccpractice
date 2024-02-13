@@ -1,0 +1,13 @@
+<?php $js=$this->getJs();?>
+<?php if (count($js)):?>
+<?php foreach ($js as $Js):?>
+<script src="<?php echo $Js ?>"></script>
+<?php endforeach; endif;?>
+
+<?php foreach ($this->getCss() as $css):?>
+    <link rel="stylesheet" src="<?php echo $css ?>"></link>
+<?php endforeach;?>
+
+
+
+
