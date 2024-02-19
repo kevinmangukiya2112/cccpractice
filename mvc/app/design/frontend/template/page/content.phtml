@@ -1,3 +1,71 @@
 <h1>
     this is content
 </h1>
+
+<?php
+echo "<pre>";
+$product_model=Mage::getmodel("catalog/catalog")->load(1);
+$page_model=Mage::getModel("page/page")->load(2);
+print_r($product_model);
+// print_r($product_model->getData());
+print_r($product_model->getId());
+echo "<br>";
+print_r($product_model->getPName());
+echo "<br>";
+print_r($product_model->getSku());
+echo "<br>";
+print_r($product_model->getPType());
+echo "<br>";
+print_r($product_model->getCategory());
+echo "<br>";
+print_r($product_model->getMCost());
+echo "<br>";
+print_r($product_model->getSCost());
+echo "<br>";
+print_r($product_model->getTCost());
+echo "<br>";
+print_r($product_model->getPrice());
+echo "<br>";
+print_r($product_model->getStatus());
+echo "<br>";
+print_r($product_model->getCDate());
+echo "<br>";
+print_r($product_model->getUDate());
+echo "<br>";
+?>
+
+    <table border="2px">
+        <tr>
+            <td><?php print_r($product_model->getUDate()); ?></td>
+        </tr>
+    </table>
+
+<?php
+print_r($page_model);
+// print_r($page_model->getData());
+echo "<br>";
+print_r($page_model->getId());
+echo "<br>";
+print_r($page_model->getPName());
+echo "<br>";
+print_r($page_model->getSku());
+echo "<br>";
+print_r($page_model->getPType());
+echo "<br>";
+print_r($page_model->getCategory());
+echo "<br>";
+print_r($page_model->getMCost());
+echo "<br>";
+print_r($page_model->getSCost());
+echo "<br>";
+print_r($page_model->getTCost());
+echo "<br>";
+print_r($page_model->getPrice());
+echo "<br>";
+print_r($page_model->getStatus());
+echo "<br>";
+print_r($page_model->getCDate());
+echo "<br>";
+print_r($page_model->getUDate());
+echo "<br>";
+?>

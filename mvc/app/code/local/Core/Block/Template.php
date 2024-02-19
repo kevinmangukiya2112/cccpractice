@@ -12,6 +12,7 @@ class Core_Block_Template extends Core_Block_Abstract{
 
     }
 
+    
     public function getChild($key){
         return $this->_child[$key];
     }
@@ -23,7 +24,6 @@ class Core_Block_Template extends Core_Block_Abstract{
     public function getTemplate(){
         return $this->_template;
     }
-
 
     public function getChildHtml($key){
         return $this->_child[$key]->toHtml();

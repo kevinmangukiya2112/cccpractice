@@ -15,8 +15,20 @@ class Core_Block_Layout extends Core_Block_Template{
         $content=$this->createBlock('page/content');
         $this->addChild('content',$content);
 
+        $leftcontent=$this->createBlock('page/content/left');
+        $this->addChild('left',$leftcontent);
+
+        $rightcontent=$this->createBlock('page/content/right');
+        $this->addChild('right',$rightcontent);
+
+        $middlecontent=$this->createBlock('page/content/middle');
+        $this->addChild('middle',$middlecontent);
+
         $head=$this->createBlock('page/head');
         $this->addChild('head',$head);
+
+        $home=$this->createBlock('page/home');
+        $this->addChild('home',$home);
     }
 
     public function createBlock($className){
