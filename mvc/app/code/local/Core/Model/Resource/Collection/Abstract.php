@@ -5,7 +5,7 @@
         protected $_select = [];
 
         protected $_isLoaded = false;
-        
+
         protected $_data = [];
         public function setResource(Core_Model_Resource_Abstract $resource) {
             $this->_resource = $resource;
@@ -26,15 +26,28 @@
         }
 
         public function addFieldToFilter($column, $filter) {
+            if($column=='groupby') {
+            $this->_select['groupby']= $filter;
+            return $this;
+            }
+            elseif($column=='orderbydsc'){
+            $this->_select['orderbydsc']= $filter;
+            return $this;
+            }
+            elseif($column=='orderbyasc'){
+            $this->_select['orderbyasc']= $filter;
+            return $this;
+            }
+            else{
             $this->_select['where'][$column][] = $filter;
             return $this;
+        }
         }
 
         public function load()
         {
             $sql = "SELECT * FROM {$this->_select['from']} ";
             if(isset($this->_select['where']) && count($this->_select['where'])) {
-
                 $whereCond = [];
                 foreach($this->_select['where'] as $_field => $_filters){
                     
@@ -61,6 +74,21 @@
                     $whereCond = implode(" AND ", $whereCond);
                     $sql .= "WHERE $whereCond";
                 }
+            }
+            if(isset($this->_select['groupby'])){
+                $sql.="GROUP BY ".$this->_select['groupby']." ";
+                // echo $sql;
+                // die;
+            }
+            if(isset($this->_select['orderbydsc'])){
+                $sql.="ORDER BY ".$this->_select['orderbydsc']." DESC " ;
+                // echo $sql;
+                // die;
+            }
+            if(isset($this->_select['orderbyasc'])){
+                $sql.="ORDER BY ".$this->_select['orderbyasc']." ASC " ;
+                // echo $sql;
+                // die;
             }
             // echo $sql;die;
             // print_r($this->_resource->getAdapter());

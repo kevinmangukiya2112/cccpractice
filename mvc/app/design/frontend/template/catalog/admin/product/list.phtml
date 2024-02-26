@@ -1,11 +1,15 @@
 <pre>
 <?php
 $productCollection = Mage::getModel('catalog/product')->getCollection()
-    ->addFieldToFilter('name','jk')
-    // ->addFieldToFilter('product_name',['like' => 'bet'])
-    // ->addFieldToFilter('product_name',['gt' => 'bet'])
-    // ->addFieldToFilter('product_name',['in' => 'bet'])
-    // ->addFieldToFilter('product_name',['between' => 'bet'])
+->addFieldToFilter('name',['eq'=>'jk'])
+->addFieldToFilter('groupby','name')
+->addFieldToFilter('orderbydsc','name');
+    // ->addFieldToFilter('name',['eq'=>'jk'])
+    // ->addFieldToFilter('name',['like' => 'bet'])
+    // ->addFieldToFilter('name',['gt' => 'bet'])
+    // ->addFieldToFilter('name',['in' => 'bet'])
+    // ->addFieldToFilter('name',['between' => 'bet'])
+    // ->addFieldToFilter('name',['orderby'=> 'name'])
     ;
     // print_r($productCollection);
 // foreach($productCollection->getData() as $product) {
@@ -14,8 +18,6 @@ $productCollection = Mage::getModel('catalog/product')->getCollection()
 // }
 // // echo get_class($productCollection); 
 // ?>
- <?php //$data=Mage::getModel("catalog/product")->load(2);
-// print_r($data);?>
 <table class="table table-striped table-dark">
     <tr>
         <td>
