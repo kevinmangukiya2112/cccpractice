@@ -20,7 +20,8 @@ class Core_Model_Abstract{
     }
 
     public function setId($id){
-
+        $this->_data[$this->getResource()->getPrimarykey()] = $id;
+        return $this;
     }
     
     public function getId(){
@@ -33,7 +34,11 @@ class Core_Model_Abstract{
     }
     
     public function getCollection(){
-        
+        $collection = new $this->collectionClass();
+        $collection->setResource($this->getResource());
+        // print_r($collection);
+        $collection->select();
+        return $collection;
     }
 
     public function __set($key, $value){
@@ -51,9 +56,9 @@ class Core_Model_Abstract{
     public function __call($name, $args) {
         // $name = strtolower(substr($name, 3));
         $name = $this->camelTodashed(substr($name, 3));
-        return isset($this->_data[$name])
+        return (isset($this->_data[$name])
             ? $this->_data[$name]
-            : "";
+            : "");
     }
     public function dashesToCamelCase($string, $capitalizeFirstCharacter = false) 
     {
@@ -68,11 +73,12 @@ class Core_Model_Abstract{
     }
 
     public function getData($key=null){
-
+        return $this->_data;
     }
 
     public function setData($data){
-
+        $this->_data = $data;
+        return $this;
     }
 
     public function addData($key, $value){
@@ -84,11 +90,15 @@ class Core_Model_Abstract{
     }
 
     public function save(){
+        // echo 333;
+        $this->getResource()->save($this);
+        return $this;
 
     }
 
     public function delete(){
-
+        $this->getResource()->delete($this);
+        return $this;
     }
 
     public function load($id, $column=null){

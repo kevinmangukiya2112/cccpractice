@@ -1,0 +1,21 @@
+<html>
+    <head>
+    <?php echo  $this->getChildHtml('head') ?>
+    </head>
+    <?php echo $this->getRequest()->getParams('id=123');?>
+    <body>
+        <div class ="header"><?php echo  $this->getChildHtml('header')?></div>
+        <div class ="content">
+        <?php echo  $this->getChildHtml('content') ?>
+        
+            <div class="left"><?php echo  $this->getChildHtml('left') ?></div>
+            <div class="middle"><?php echo  $this->getChildHtml('middle') ?></div>
+            <div class="right"><?php echo  $this->getChildHtml('right') ?></div>
+        </div>
+        <div class ="footer"><?php echo  $this->getChildHtml('footer') ?></div>
+        <div class ="home "><?php echo  $this->getChildHtml('home') ?></div>
+        <h1>
+            Hello
+        </h1>
+    </body>
+</html>

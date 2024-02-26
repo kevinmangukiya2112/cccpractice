@@ -1,0 +1,20 @@
+<html>
+<body>
+    <div>
+        <nav>
+        <?php $form=$this->getForm()?>
+        <?php if(count($form)):?>
+        <?php foreach ($form as $_form):?>
+            <button class="button button"><a href="<?php echo $_form ?>">Register</a></button>
+            <?php endforeach;?>
+            <?php endif;?>
+            <button class="button button"><a href="login.phtml">login</a></button>
+            <button class="button button"><a href="Category.phtml">Category</a></button>
+            <button class="button button"><a href="Product.phtml">Product</a></button>
+            <button class="button button"><a href="Cart.phtml">Cart</a></button>
+            <button class="button button"><a href="logout.phtml">logout</a></button>
+        </nav>
+    </div>
+    
+</body>
+</html>

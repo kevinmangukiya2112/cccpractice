@@ -1,0 +1,66 @@
+
+p {
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 20px; 
+  }
+  
+  .product {
+    max-width: 600px;
+    margin: auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 30% auto;
+  }
+  
+  label {
+    display: block;
+
+  }
+  
+  input,
+  select {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  input[type="radio"] {
+    margin: 5px;
+    width: auto;
+  }
+  
+  input[type="submit"] {
+    grid-column: span 2;
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  input[type="submit"]:hover {
+    background-color: #45a049;
+  }
+  
+
+  @media (min-width: 768px) {
+    .product {
+      grid-template-columns: 40% auto;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .product {
+      grid-template-columns: 20% auto;
+    }
+  }

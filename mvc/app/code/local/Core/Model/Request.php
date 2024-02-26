@@ -16,12 +16,12 @@ class Core_Model_Request{
         
 	}
 
-	public function getParams($key = '') {
+	public function getParams($key = '',$arg=null) {
 		return ($key == '')
 			? $_REQUEST
 			: (isset($_REQUEST[$key])
 				? $_REQUEST[$key]
-				: ''
+				: ((!is_null($arg))? $arg :'')
 			);
 	}
 
@@ -55,6 +55,11 @@ class Core_Model_Request{
 		$uri = $_SERVER['REQUEST_URI'];
 		$request = str_replace($dir,"",$uri);
 		return $request;
+	}
+
+	public function getUrl($path){
+		// print_r ($_SERVER['SCRIPT_NAME']);
+		return 'http://localhost/phppractice/mvc/'.$path;
 	}
 
 	public function getActionName(){

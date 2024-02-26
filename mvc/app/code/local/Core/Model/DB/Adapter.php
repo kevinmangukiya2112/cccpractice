@@ -5,9 +5,9 @@ class Core_Model_DB_Adapter{
         "host"=> "localhost",
         "user"=> "root",
         "password"=> "",
-        "database"=>"ccc_practice",
+        "database"=>"tables",
     ];
-    public $connect = null;
+    protected $connect = null;
     public function connect()
     {
         if(is_null($this->connect)){
@@ -21,7 +21,13 @@ class Core_Model_DB_Adapter{
     }
 
     public function fetchAll($query){
-        
+        $row=[];
+        $sql= mysqli_query($this->connect(),$query);
+        while($_row=mysqli_fetch_assoc($sql)){
+        // return mysqli_fetch_row($scl);
+            $row[]=$_row;
+        }
+        return $row;
     }
 
     public function fetchPairs($query){
@@ -43,15 +49,33 @@ class Core_Model_DB_Adapter{
     }
 
     public function insert($query){
-
+            if(mysqli_query($this->connect(),$query)){
+                return mysqli_insert_id($this->connect());
+            }
+            else{
+             return False;
+            }
     }
 
-    public function update($query){
 
+    public function update($query){
+        if(mysqli_query($this->connect(),$query)){
+            return true;
+        }
+        else{   
+            return false;
+        }
+        
     }
 
     public function delete($query){
-
+        if(mysqli_query($this->connect(),$query)){
+            return true;
+        }
+        else{   
+            return false;
+        }
+        
     }
 
     public function query($query){

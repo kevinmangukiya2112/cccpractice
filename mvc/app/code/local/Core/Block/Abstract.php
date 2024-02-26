@@ -1,5 +1,7 @@
 <?php
 class Core_Block_Abstract {
+
+  protected $data=[];
     public function setTemplate($template){
 
     }
@@ -29,15 +31,14 @@ class Core_Block_Abstract {
     }
 
     public function setData($data){
-
     }
 
-    public function getUrl($action = null, $controller = null, $params = [], $resetParams = false){
+    // public function getUrl($action = null, $controller = null, $params = [], $resetParams = false){
 
-    }
+    // }
 
     public function getRequest(){
-      return Mage::getmodel('core/request');
+      return Mage::getModel('core/request');
     }
 
     public function render(){

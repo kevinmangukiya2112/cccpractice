@@ -1,0 +1,63 @@
+<head>
+    <!-- <link rel="stylesheet" href="app\design\frontend\template\page\css\head.css"> -->
+</head>
+<p>
+    <h1>Product Form</h1>
+</p>
+<form action="<?php echo $this->getUrl("Catalog/Product/save") ?>" method="post">
+        <div>Product_id::
+        <input type="text" name="pdata[product_id]" value="">
+        </div>
+        <div>SKU::
+        <input type="text" name="pdata[sku]" value="">
+        </div>
+        <div>Name::
+        <input type="text" name="pdata[name]" value="">
+        </div>
+        <div>Color::
+        <input type="text" name="pdata[color]" value="">
+        </div>
+        <div>Size::
+        <input type="text" name="pdata[size]" value="">
+        </div>
+        <div>Description::
+        <input type="text" name="pdata[description]" value="">
+        </div>
+        <div>Image::
+        <input type="file" name="pdata[image_link]" value="">
+        </div>
+        <div>Link::
+        <input type="text" name="pdata[link]" value="">
+        </div>
+        <div>Category_Id::
+        <input type="text" name="pdata[category_id]" value="">
+        </div>
+        <div>Price::
+        <input type="text" name="pdata[price]" value="">
+        </div>
+        <div>MFR_Cost::
+        <input type="text" name="pdata[mfr_cost]" value="">
+        </div>
+        <div>Shipping_Cost::
+        <input type="text" name="pdata[shipping_cost]" value="">
+        </div>
+        <div>Total_cost::
+        <input type="text" name="pdata[total_cost]" value="">
+        </div>
+        <div>Margin_Percentage::
+        <input type="text" name="pdata[margin_percentage]" value="">
+        </div>
+        <div>Min_Price::
+        <input type="text" name="pdata[min_price]" value="">
+        </div>
+        <div>Status::
+        <select  name="pdata[status]">
+            <option value="1">Enabled</option>
+            <option value="0">Disabled</option>
+        </select>
+        </div>
+        <div>
+            <input type="submit"> 
+        </div>
+    </form>
+

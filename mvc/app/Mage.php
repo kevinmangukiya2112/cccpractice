@@ -11,39 +11,43 @@
           $frontController->init();
         }
 
-     //   public static function getmodel($modelname){
-     //    $str="Model";
-     //    $modelname=explode("/",$modelname);
-     //    $classname=ucfirst($modelname[0])."_".($str)."_".ucfirst($modelname[1]);
-     //    return new $classname();
-     //   }
+       public static function getModel($modelname){
+        $str="Model";
+        $modelname=explode("/",$modelname);
+        $classname=ucfirst($modelname[0])."_".($str)."_".ucfirst($modelname[1]);
+        return new $classname();
+       }
 
-       public static function getmodel($modelname){
-          $str="Model";
-          $modelname=explode("/",$modelname);
-          $classname=ucfirst($modelname[0])."_".($str);
-          for ($i= 1;$i<count($modelname);$i++){
-          $classname .="_".ucfirst($modelname[$i]);
-          }
-          return new $classname();
-         }
-
-     //   public static function getBlock($blockname){
-     //        $str="Block";
-     //        $modelname=explode("/",$blockname);
-     //        $classname=ucfirst($modelname[0])."_".($str)."_".ucfirst($modelname[1]);
-     //        return new $classname();
-     //       }
+      //  public static function getmodel($modelname){
+      //     $str="Model";
+      //     $modelname=explode("/",$modelname);
+      //     $classname=ucfirst($modelname[0])."_".($str);
+      //     for ($i= 1;$i<count($modelname);$i++){
+      //     $classname .="_".ucfirst($modelname[$i]);
+      //     }
+      //     return new $classname();
+      //    }
 
        public static function getBlock($blockname){
             $str="Block";
-            $blockname=explode("/",$blockname);
-            $classname=ucfirst($blockname[0])."_".($str);
-            for($i= 1;$i<count($blockname);$i++){
-            $classname .="_".ucfirst($blockname[$i]);
-            }
+            $modelname=explode("/",$blockname);
+            $classname=ucfirst($modelname[0])."_".($str)."_".ucfirst($modelname[1]);
             return new $classname();
            }
+
+      //  public static function getBlock($blockname){
+      //       $str="Block";
+      //       $blockname=explode("/",$blockname);
+      //       $classname=ucfirst($blockname[0])."_".($str);
+      //       for($i= 1;$i<count($blockname);$i++){
+      //       $classname .="_".ucfirst($blockname[$i]);
+      //       }
+      //       return new $classname();
+      //      }
+
+       public static function getBaseUrl(){
+          return "/phppractice/mvc/";
+       }
 
        public static function getSingleton(){
 

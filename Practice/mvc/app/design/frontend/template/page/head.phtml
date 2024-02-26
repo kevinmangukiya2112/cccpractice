@@ -1,0 +1,20 @@
+<?php $js=$this->getJs();
+      $css=$this->getCss();
+?>
+<?php if (count($js)):?>
+<?php foreach ($js as $_js):?>
+<script src="<?php echo $_js ?>"></script>
+<?php endforeach; ?> 
+<?php endif;?>
+
+
+<?php if(count($css)):?>
+<?php foreach ($css as $_css):?>
+    <link rel="stylesheet" href="<?php echo $_css ?>"></link>
+<?php endforeach;?>
+<?php endif;?>
+
+
+
+
+
