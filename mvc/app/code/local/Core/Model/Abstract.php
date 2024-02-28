@@ -2,6 +2,7 @@
 
 class Core_Model_Abstract{
     protected $_data = [];
+    protected $modelClass='';
     protected $resourceClass = '';
     protected $collectionClass = '';
     protected $resource = null;
@@ -26,7 +27,6 @@ class Core_Model_Abstract{
     
     public function getId(){
         return $this->_data[$this->getResource()->getPrimarykey()];
-
     }
 
     public function getResource(){
@@ -36,7 +36,7 @@ class Core_Model_Abstract{
     public function getCollection(){
         $collection = new $this->collectionClass();
         $collection->setResource($this->getResource());
-        // print_r($collection);
+        $collection->setModel($this->modelClass);
         $collection->select();
         return $collection;
     }
@@ -93,7 +93,6 @@ class Core_Model_Abstract{
         // echo 333;
         $this->getResource()->save($this);
         return $this;
-
     }
 
     public function delete(){

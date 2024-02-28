@@ -10,5 +10,4 @@ class Catalog_Model_Resource_Product extends Core_Model_Resource_Abstract{
         $this->_primarykey="product_id";
     }
     
-
 }

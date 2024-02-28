@@ -22,27 +22,22 @@ class Core_Model_Resource_Abstract{
         return $this->getAdapter()->fetchRow($sql);
     }
 
-    public function save(Catalog_Model_Product $product){
-        // echo 777;
-        $data=$product->getData();
-        print_r($data["product_id"]);
-        print_r($product->getProductId()); echo "<br>";
-
+    public function save(Core_Model_Abstract $model){
+        $data=$model->getData();
         if(isset ($data[$this->getPrimarykey()])  && !empty($data[$this->getPrimaryKey()])){
             unset ($data[$this->getPrimarykey()]);
-            $update=$this->updateSql($this->getTablename(),$data, [$this->getPrimarykey()=>$product->getId()]);
-            $this->getAdapter()->update($update);
+            $sql=$this->updateSql($this->getTablename(),$data, [$this->getPrimarykey()=>$model->getId()]);
+            ($this->getAdapter()->update($sql));
         }
         else{
             $sql= $this->insertSql($this->getTablename(),$data);
-            $this->getAdapter()->insert($sql);
+            $this->getAdapter()->insert($sql);       
         }
     }
 
-    public function delete(Catalog_Model_Product $product){
-        $delete=$this->deleteSql($this->getTablename(),[$this->getPrimarykey()=>$product->getProductId()]);
-        echo $delete;
-         $this->getAdapter()->delete($delete);
+    public function delete(Core_Model_Abstract $model){
+        $delete=$this->deleteSql($this->getTablename(),[$this->getPrimarykey()=>$model->getId()]);
+        ($this->getAdapter()->delete($delete)); 
     }
 
     public function insertSql($tablename,$data){

@@ -1,6 +1,8 @@
 <?php
  class Mage{
       private static $baseDir="C:/xampp/htdocs/phppractice/mvc";
+
+      protected static $singleton=[];
        public static function init(){
         // $requst_model=new Core_Model_Request(); 
         // $uri = $requst_model->getRequestUri();
@@ -49,9 +51,14 @@
           return "/phppractice/mvc/";
        }
 
-       public static function getSingleton(){
-
+       public static function getSingleton($className){
+        if(isset(self::$singleton[$className])) {
+          return self::$singleton[$className];
        }
+       else{
+          return self::$singleton[$className]= self::getModel($className);
+       }
+     }
        public static function register($key, $value) {
 
        }

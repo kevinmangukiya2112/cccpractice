@@ -3,12 +3,16 @@
     {
         protected $_resource = null;
         protected $_select = [];
-
         protected $_isLoaded = false;
-
         protected $_data = [];
+        protected $_model=null;
         public function setResource(Core_Model_Resource_Abstract $resource) {
             $this->_resource = $resource;
+            return $this;
+        }
+
+        public function setModel($model) {
+            $this->_model = $model;
             return $this;
         }
 
@@ -64,16 +68,17 @@
                                     $whereCond[] = "`$_field` IN ( '{$_v}') ";
                                     break;
                                 case 'eq':
-                                    $whereCond[] = "`$_field` = '{$_v}' ";
+                                    $whereCond[] = "`{$_field}` = '{$_v}' ";
                                     break;
                                 default:
                                     $whereCond[] = "`$_field` = '{$_v}' ";
                             }
                         }
                     }
-                    $whereCond = implode(" AND ", $whereCond);
-                    $sql .= "WHERE $whereCond";
+                  
                 }
+                $whereCond = implode(" AND ", $whereCond);
+                $sql .= "WHERE $whereCond";
             }
             if(isset($this->_select['groupby'])){
                 $sql.="GROUP BY ".$this->_select['groupby']." ";
@@ -90,12 +95,12 @@
                 // echo $sql;
                 // die;
             }
-            // echo $sql;die;
             // print_r($this->_resource->getAdapter());
             $result = $this->_resource->getAdapter()->fetchAll($sql);
             //print_r($result);
-            foreach($result as $row) {
-                $this->_data[] = Mage::getModel('catalog/product')->setData($row);
+            foreach($result as $row) 
+            {
+                $this->_data[] = Mage::getModel($this->_model)->setData($row);
             }
             $this->_isLoaded = true;
             return $this;

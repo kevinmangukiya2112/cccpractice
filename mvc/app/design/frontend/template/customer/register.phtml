@@ -1,0 +1,40 @@
+<?php
+$customer=$this->getCustomer();
+// print_r($data);
+// print_r($data->getCustomerEmail());
+?>
+<form action="<?php echo $this->getUrl("customer/account_customer/save") ?> " method="post" class="product">
+    <label hidden for="cid">customer_id:</label>
+    <input hidden type="text" id="cid" name="cdata[customer_id]" value="<?php echo $customer->getCustomerId()?>"/>
+    <label for="cemail">Email:</label>
+    <input type="varchar" name="cdata[customer_email]" id="cemail" value="<?php echo $customer->getCustomerEmail()?>">
+    <label for="fname">First_name:</label>
+    <input type="varchar" name="cdata[first_name]" id="fname" value="<?php echo $customer->getFirstName()?>">
+    <label for="lname">Last_name:</label>
+    <input type="varchar" name="cdata[last_name]" id="lname" value="<?php echo $customer->getLastName()?>">
+    <label for="baddress">Billing_address:</label>
+    <input type="varchar" name="cdata[billing_address]" id="baddress" value="<?php echo $customer->getBillingAddress()?>">
+    <label for="bcity">Billing_city:</label>
+    <input type="varchar" name="cdata[billing_city]" id="bcity" value="<?php echo $customer->getBillingCity()?>">
+    <label for="bregion">Billing_region:</label>
+    <input type="varchar" name="cdata[billing_region]" id="bregion" value="<?php echo $customer->getBillingRegion()?>">
+    <label for="bcountry">Billing_country:</label>
+    <input type="varchar" name="cdata[billing_country]" id="bcountry" value="<?php echo $customer->getBillingCountry()?>">
+    <label for="bphone">Billing_phone_no:</label>
+    <input type="varchar" name="cdata[billing_phone]" id="bphone" value="<?php echo $customer->getBillingPhone()?>">
+    <label for="saddress">Shipping_address:</label>
+    <input type="varchar" name="cdata[shipping_address]" id="saddress" value="<?php echo $customer->getShippingAddress()?>">
+    <label for="scity">Shipping_city:</label>
+    <input type="varchar" name="cdata[shipping_city]" id="scity" value="<?php echo $customer->getShippingCity()?>">
+    <label for="sregion">Shipping_region:</label>
+    <input type="varchar" name="cdata[shipping_region]" id="sregion" value="<?php echo $customer->getShippingRegion()?>">
+    <label for="scountry">Shipping_country:</label>
+    <input type="varchar" name="cdata[shipping_country]" id="scountry" value="<?php echo $customer->getShippingCountry()?>">
+    <label for="sphone">Shipping_phone:</label>
+    <input type="varchar" name="cdata[shipping_phone]" id="sphone" value="<?php echo $customer->getShippingPhone()?>">
+    <label for="address">Default_address:</label>
+    <input type="varchar" name="cdata[default]" id="address" value="<?php echo $customer->getDefault()?>">
+    <label for="pass">Password:</label>
+    <input type="varchar" name="cdata[password]" id="pass" value="<?php echo $customer->getPassword()?>">
+    <input type="submit">
+</form>

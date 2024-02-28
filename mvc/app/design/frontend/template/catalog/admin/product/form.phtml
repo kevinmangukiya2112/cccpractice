@@ -5,8 +5,8 @@ $data=$this->getProduct();
 // print_r($data);
 ?>
 <form action="<?php echo $this->getUrl("admin/catalog_product/save")?>" method="post" class="product">
-    <label for="pid">Product_id</label>
-    <input type="text" id="pid" name="pdata[product_id]" value="<?php echo $data->getProductId()?>" />
+    <label hidden for="pid">Product_id</label>
+    <input hidden type="text" id="pid" name="pdata[product_id]" value="<?php echo $data->getProductId()?>" />
 
     <label for="sku">sku</label>
     <input type="text" id="sku" name="pdata[sku]" value="<?php echo $data->getSku()?>" />

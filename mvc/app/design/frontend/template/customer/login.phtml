@@ -1,0 +1,8 @@
+<form action="<?php echo $this->getUrl("customer/account_customer/login") ?>" method="post" class="product">
+    <label for="email">Email:</label>
+        <input type="text" name="cdata[email]" id="email" />
+    <label id="pass">Password:</label>
+        <input type="text" name="cdata[password]" id="pass" />
+    <a href="<?php echo $this->getUrl("customer/account_customer/forgotpassword") ?>">FrogotPassword?</a>
+    <input type="submit">
+</form>
