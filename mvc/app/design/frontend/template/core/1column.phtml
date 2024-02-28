@@ -1,14 +1,33 @@
+<!DOCTYPE html>
 <html>
-    <head>
-    <?php echo  $this->getChildHtml('head') ?>
-    </head>
-    <?php echo $this->getRequest()->getParams('id=123');?>
-    <body>
-        <div class ="header"><?php echo  $this->getChildHtml('header')?></div>
-        <div class ="content">
-        <?php echo  $this->getChildHtml('content') ?>
-        </div>
-        <div class ="footer"><?php echo  $this->getChildHtml('footer') ?></div>
-        <div class ="home "><?php echo  $this->getChildHtml('home') ?></div>
-    </body>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <?php 
+      $uri_css_one = "skin/css/index/bootstrap.min.css";
+      $this->getChild('head')->addCss($uri_css_one);
+      $uri_css_two = "skin/css/index/style.css";
+      $this->getChild('head')->addCss($uri_css_two);
+      $uri_css_three = "skin/css/index/tiny-slider.css";
+      $this->getChild('head')->addCss($uri_css_three);
+      $uri_js_one = "skin/js/index/bootstrap.bundle.min.js";
+      $this->getChild('head')->addJs($uri_js_one);
+      $uri_js_two = "skin/js/index/custom.js";
+      $this->getChild('head')->addJs($uri_js_two);
+      $uri_js_three = "skin/js/index/tiny-slider.js";
+      $this->getChild('head')->addJs($uri_js_three);
+    ?>
+   <div class="Head"><?php echo $this->getChildHtml('head'); ?></div>
+</head>
+<body>
+   <div class="header"><?php echo $this->getChildHtml('header'); ?></div>
+   <div class="Content">
+      <?php echo $this->getChildHtml('content'); ?>
+        <!-- <div class="left">left</div>
+        <div class="middle">middle</div>
+        <div class="right">right</div> -->
+   </div>
+   <div class="Footer"><?php echo $this->getChildHtml('footer'); ?></div>
+</body>
 </html>

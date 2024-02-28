@@ -50,6 +50,7 @@ class Core_Model_Request{
 		}
 		return false;
 	}
+	
 	public function getRequestUri(){
 		$dir = '/phppractice/mvc/';
 		$uri = $_SERVER['REQUEST_URI'];

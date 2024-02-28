@@ -1,6 +1,16 @@
 <?php 
 
 class Customer_Controller_Account_Customer extends Core_Controller_Front_Action{
+
+    protected $loginActionRequired=[
+        'dashborad'
+    ];
+    public function init(){
+        $action=$this->getRequest()->getActionName();
+        if(in_array($action,$this->loginActionRequired)){
+            $customerid=Mage::getSingleton('core/session')->get('customer_id');
+        }
+    }
     public function loginAction(){
         if($this->getRequest()->isPost()){
             $data=$this->getRequest()->getParams('cdata');
@@ -20,7 +30,7 @@ class Customer_Controller_Account_Customer extends Core_Controller_Front_Action{
             if($result){
                 Mage::getSingleton('core/session')->set('customer_id',$customer_id);
                 echo "login successfull";
-                header("location:dashboard");
+                // header("location:dashboard");
             }
             else{
                 echo "Wrong Credentials";

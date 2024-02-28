@@ -6,6 +6,7 @@ class Admin_Controller_Catalog_Product extends Core_Controller_Front_Action{
      //    print_r($data);
         $productmodel=Mage::getModel("catalog/product");
         $productmodel->setData($data)->save();
+        $this->setRedirect("admin/catalog_product/list". "?id=".$productmodel->getId());
      }
 
      public function deleteAction(){
