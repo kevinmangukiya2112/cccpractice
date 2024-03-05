@@ -1,0 +1,19 @@
+<?php $banner=Mage::getModel("banner/banner")->getCollection();?>
+<table class="table table-dark table-stripped">
+    <tr>
+        <td>Bannerid</td>
+        <td>Title</td>
+        <td>Image</td>
+        <td>Update</td>
+        <td>Delete</td>
+    </tr>
+<?php foreach ($banner->getData() as $bannerItem): ?>
+    <tr>
+        <td><?php echo $bannerItem->getBannerId() ?></td>
+        <td><?php echo $bannerItem->getTitle() ?></td>
+        <td><img src='<?php echo Mage::getImageUrl()."banner/".$bannerItem->getImage() ?>' class="image" height="100" width="100"></td>
+        <td><a href="<?php echo $this->getUrl("admin/banner/form")."?id=".$bannerItem->getBannerId() ?>"><button class="btn btn-primary">Edit</button></a></td>
+        <td><a href="<?php echo $this->getUrl("admin/banner/delete")."?id=".$bannerItem->getBannerId() ?>"><button class="btn btn-danger">Delete</button></a></td>
+    </tr>
+<?php endforeach; ?>
+</table>

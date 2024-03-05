@@ -1,6 +1,6 @@
 <?php
 
-class Banner_Model_Resource_Banner{
+class Banner_Model_Resource_Banner extends Core_Model_Resource_Abstract{
 
     protected $_tablename=null;
     protected $_primarykey=null;
@@ -9,8 +9,8 @@ class Banner_Model_Resource_Banner{
     }
 
     public function init(){
-        $this->_tablename= "ccc_practice";
-        $this->_primarykey= "id";
+        $this->_tablename= "banner";
+        $this->_primarykey= "banner_id";
     }
 
     public function getTablename(){

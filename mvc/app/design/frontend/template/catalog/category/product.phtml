@@ -1,0 +1,93 @@
+<?php //$category=Mage::getModel("catalog/category")->getCollection();
+// print_r($category);
+$product=$this->getProduct();
+if(!$product->getData()){
+    echo "That category product doesn't exist in out list";
+}
+else{
+?>
+<table class="table table-stripped table-dark">
+<tr>
+        <td>
+            product_id
+        </td>
+        <td>
+            sku
+        </td>
+        <td>
+            name 
+        </td>
+        <td>
+            color
+        </td>
+        <td>
+            size
+        </td>
+        <td>
+            description
+        </td>
+        <td>
+            image
+        </td>
+        <td>
+            link
+        </td>
+        <td>
+            category_id
+        </td>
+        <td>
+            price
+        </td>
+        <td>
+            mfr_cost
+        </td>
+        <td>
+            shipping_cost
+        </td>
+        <td>
+            total_cost
+        </td>
+        <td>
+            margin_percent
+        </td>
+        <td>
+            min_price
+        </td>
+        <td>
+            status
+        </td>
+        <td>
+            add to cart
+        </td>
+        <!-- <td>
+            Edit
+        </td>
+        <td>
+            Delete
+        </td> -->
+
+<?php foreach ($product->getData() as $_product) {
+    // print_r($_product);
+?>
+     <tr>
+        <td><?php echo $_product->getProductId()?></td>
+        <td><?php echo $_product->getSku()?></td>
+        <td><?php echo $_product->getName()?></td>
+        <td><?php echo $_product->getColor()?></td>
+        <td><?php echo $_product->getSize()?></td>
+        <td><?php echo $_product->getDescription()?></td>
+        <td><img src='<?php echo Mage::getImageUrl()."product/".$_product->getImageLink() ?>' class="d-block w-100" alt="" height="100" width="100"></td>
+        <td><?php echo $_product->getLink()?></td>
+        <td><?php echo $_product->getCategoryId()?></td>
+        <td><?php echo $_product->getPrice()?></td>
+        <td><?php echo $_product->getMfrCost()?></td>
+        <td><?php echo $_product->getShippingCost()?></td>
+        <td><?php echo $_product->getTotalCost()?></td>
+        <td><?php echo $_product->getMarginPercentage()?></td>
+        <td><?php echo $_product->getMinPrice()?></td>
+        <td><?php echo $_product->getStatus()?></td>
+        <td><a href="<?php echo $this->getUrl("sales/quote/add")."?id=".$_product->getProductId("")?>"><button class="btn btn-outline-primary">AddCart</button></a></td>
+     </tr>
+<?php }?>
+</table>
+<?php } ?>

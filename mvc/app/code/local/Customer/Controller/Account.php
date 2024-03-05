@@ -1,25 +1,36 @@
 <?php 
 
-class Customer_Controller_Account_Customer extends Core_Controller_Front_Action{
+class Customer_Controller_Account extends Core_Controller_Front_Action{
 
-    protected $loginActionRequired=[
+    protected $_loginActionRequired=[
         'dashborad'
     ];
+
+    public function __construct(){
+        $this->init() ;
+    }
     public function init(){
         $action=$this->getRequest()->getActionName();
-        if(in_array($action,$this->loginActionRequired)){
+        if(in_array($action,$this->_loginActionRequired)){
             $customerid=Mage::getSingleton('core/session')->get('customer_id');
+            if(!$customerid){
+                $this->setRedirect('customer/account/login');
+            }
+            else{
+                $this->setRedirect('customer/account/dashboard');
+            }
         }
     }
     public function loginAction(){
+        $customerid=Mage::getSingleton('core/session')->get('customer_id');
+        if($customerid){
+            $this->setRedirect('customer/account/dashboard');
+        }
+        else{
         if($this->getRequest()->isPost()){
             $data=$this->getRequest()->getParams('cdata');
             $credentials=Mage::getSingleton('customer/customer')->getCollection()->addFieldToFilter('customer_email',$data['email'])->addFieldToFilter('password',$data['password'])
             ;
-            echo "<pre>";
-            // print_r($credentials);
-            // print_r($data);
-            // die;
             $result=null;
             $customer_id=0;
             foreach($credentials->getData() as $data){
@@ -29,8 +40,7 @@ class Customer_Controller_Account_Customer extends Core_Controller_Front_Action{
             // print_r($result);
             if($result){
                 Mage::getSingleton('core/session')->set('customer_id',$customer_id);
-                echo "login successfull";
-                // header("location:dashboard");
+                $this->setRedirect('customer/account/dashboard');
             }
             else{
                 echo "Wrong Credentials";
@@ -39,16 +49,21 @@ class Customer_Controller_Account_Customer extends Core_Controller_Front_Action{
         else{
         $layout=$this->getlayout();
         $child=$layout->getChild("content");
+        $layout->removeChild('header');
+        $layout->removeChild('footer');
         $layout->getChild('head')->addCss('/skin/css/product/form.css');
         $loginform=$layout->createBlock("customer/login")->setTemplate("customer/login.phtml");
         $child->addChild("form",$loginform);
         $layout->toHtml();
         }
     }
+    }
 
     public function registerAction(){
         $layout=$this->getlayout();
         $child=$layout->getChild("content");
+        $layout->removeChild('header');
+        $layout->removeChild('footer');
         $layout->getChild('head')->addCss('/skin/css/product/form.css');
         $registerform=$layout->createBlock("customer/register")->setTemplate("customer/register.phtml");
         $child->addChild("form",$registerform);
@@ -75,6 +90,7 @@ class Customer_Controller_Account_Customer extends Core_Controller_Front_Action{
         $child=$layout->getChild("content");
         $customerlist=$layout->createBlock("customer/dashboard")->setTemplate("customer/dashboard.phtml");
         $child->addChild("list",$customerlist);
+        // $layout->removeChild("header");  
         $layout->toHtml();
         }
         else{
@@ -82,22 +98,9 @@ class Customer_Controller_Account_Customer extends Core_Controller_Front_Action{
         }
     }
 
-    public function forgotpasswordAction(){
-        if($this->getRequest()->isPost()){
-            $data=$this->getRequest()->getParams('cdata');
-            print_r($data['password']);
-            $customer=Mage::getSingleton("customer/customer")->getCollection()->addFieldToFilter('customer_email',$data['email']);
-            if($customer){
-                echo "password updated successfull";
-            }
-        }
-        else{
-        $layout=$this->getLayout();
-        $child=$layout->getChild("content");
-        $forgotpassword=$layout->createBlock("customer/forgotpassword")->setTemplate("customer/forgotpassword.phtml");
-        $child->addChild("forgotpassword",$forgotpassword);
-        $layout->toHtml();
-        }
-        
+    public function logoutAction(){
+        Mage::getSingleton("core/session")->remove("customer_id");
+        $this->setRedirect("customer/account/login");
+
     }
 }

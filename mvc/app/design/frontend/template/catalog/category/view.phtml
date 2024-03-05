@@ -1,0 +1,35 @@
+<?php //$category=Mage::getModel("catalog/category")->getCollection();
+// print_r($category);
+$category=Mage::getModel("catalog/category")->getcollection();
+if(!$category){
+    echo "That category product doesn't exist in out list";
+}
+else{
+?>
+<table class="table table-stripped table-dark">
+<tr>
+        <td>
+            category_id
+        </td>
+        <td>
+            Category_name
+        </td>
+        <td>
+            status
+        </td>
+        <td>
+            View
+        </td>
+</tr>
+<?php foreach ($category->getData() as $_product) {
+    // print_r($_product);
+?>
+     <tr>
+        <td><?php echo $_product->getCategoryId()?></td>
+        <td><?php echo $_product->getCategoryName()?></td>
+        <td><?php echo $_product->getStatus()?></td>
+        <td><a href="<?php echo $this->getUrl("catalog/category/viewproduct")."?id=" .$_product->getCategoryId()?>"><button class="btn btn-outline-primary">Product</button></a></td>
+     </tr>
+<?php }?>
+</table>
+<?php } ?>

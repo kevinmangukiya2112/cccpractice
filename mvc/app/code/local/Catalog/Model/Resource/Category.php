@@ -1,6 +1,6 @@
 <?php
 
-class Catalog_Model_Category{
+class Catalog_Model_Resource_Category  extends Core_Model_Resource_Abstract{
     protected $_tablename=null;
     protected $_primarykey=null;
 
@@ -9,25 +9,9 @@ class Catalog_Model_Category{
     }
 
     public function init(){
-        $this->_tablename="ccc_practice";
-        $this->_primarykey="id";
+        $this->_tablename="catalog_category";
+        $this->_primarykey="category_id";
     }
 
-    public function getPrimarykey(){
-        return $this->_primarykey;
-    }
-
-    public function getTablename(){
-        return $this->_tablename;
-    }
-
-    public function getAdaptor(){
-        return new Core_Model_DB_Adapter();
-    }
-
-    public function load($id,$columns=null){
-        $sql= "SELECT * FROM {$this->_tablename} WHERE {$this->_primarykey} = {$id} LIMIT 1";
-        return $this->getAdaptor()->fetchrow($sql);
-    }
 }
 

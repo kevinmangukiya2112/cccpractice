@@ -1,0 +1,9 @@
+<form action="<?php echo $this->getUrl("admin/catalog_category/save")?>" method="post">
+    <label hidden for="cid">Category_id</label>
+    <input hidden type="text" name="cdata[category_id]" id="cid">
+    <label for="cname">Category_name</label>
+    <input type="text" name="cdata[category_name]" id="cname">
+    <label for="sta">Status</label>
+    <input type="text" name="cdata[status]" id="sta">
+    <input type="submit" name="submit">
+</form>

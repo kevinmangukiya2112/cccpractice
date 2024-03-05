@@ -9,7 +9,8 @@ class Core_Block_Template extends Core_Block_Abstract{
         $this->_child[$key]=$value;
     }
     public function removeChild($key){
-
+        unset($this->_child[$key]);
+        return $this;
     }
 
     public function getChild($key){
@@ -33,7 +34,9 @@ class Core_Block_Template extends Core_Block_Abstract{
         }
     }
         else{
-        return $this->_child[$key]->toHtml();
+        if(isset($this->_child[$key])){
+            $html=$this->_child[$key]->toHtml();
+        }
     }
     return $html;
     }

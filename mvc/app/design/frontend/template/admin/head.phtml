@@ -1,0 +1,21 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<?php $js=$this->getJs();
+      $css=$this->getCss();
+?>
+<?php if (count($js)):?>
+<?php foreach ($js as $_js):?>
+<script src="<?php echo Mage::getBaseUrl().$_js ?>"></script>
+<?php endforeach; ?> 
+<?php endif;?>
+
+<?php if(count($css)):?>
+<?php foreach ($css as $_css):?>
+    <link rel="stylesheet" href="<?php echo Mage::getBaseUrl().$_css ?>"></link>
+<?php endforeach;?>
+<?php endif;?>
+
+
+
+
+

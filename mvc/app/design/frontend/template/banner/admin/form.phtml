@@ -1,0 +1,11 @@
+<?php $banner=$this->getBanner();
+// print_r($banner);?>
+<form action="<?php echo $this->getUrl("admin/banner/save")  ?>" method="post" enctype="multipart/form-data">
+<label hidden for="bid">Banner_id</label>
+<input hidden type="text" name="bdata[banner_id]" id="bid" value="<?php echo $banner->getBannerId()?>"/>
+<label for="btitle">Title</label>
+<input type="text" name="bdata[title]" id="btitle" value="<?php echo $banner->getTitle()?>"/>
+<label for="image">image</label>
+<input type="file" name="bdata[image]" id="image" value="<?php echo $banner->getName()?>"/>
+<input type="submit" name="Upload">
+</form>

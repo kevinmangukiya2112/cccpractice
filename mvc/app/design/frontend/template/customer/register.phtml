@@ -3,7 +3,7 @@ $customer=$this->getCustomer();
 // print_r($data);
 // print_r($data->getCustomerEmail());
 ?>
-<form action="<?php echo $this->getUrl("customer/account_customer/save") ?> " method="post" class="product">
+<form action="<?php echo $this->getUrl("customer/account/save") ?> " method="post" class="product">
     <label hidden for="cid">customer_id:</label>
     <input hidden type="text" id="cid" name="cdata[customer_id]" value="<?php echo $customer->getCustomerId()?>"/>
     <label for="cemail">Email:</label>

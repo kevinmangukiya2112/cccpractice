@@ -5,20 +5,12 @@
         // echo dirname(__FILE__);
         $layout=$this->getLayout();
         $child=$layout->getChild('content');
-        $banner=$layout->createBlock('core/template')
-            ->setTemplate('banner/banner.phtml');
+        $layout->getChild("head")->addJs("/skin/js/banner/carousel.js");
+        $layout->getChild("head")->addCss("/skin/css/banner/carousel.css");
+        $banner=$layout->createBlock('banner/banner')
+            ->setTemplate('banner/view.phtml');
         $child->addChild('banner',$banner);
         $layout->toHtml();
-        echo Mage::getSingleton('core/session')->get('abc');
     }
-
-    public function testAction(){
-        echo"<pre>";
-        $prodcutModel=Mage::getSingleton('core/session')->set('abc','ke');
-        print_r($_SESSION);
-        // $prodcutModel=Mage::getSingleton('catalog/product');
-        // print_r($prodcutModel);
-        die;
-
-    }
- }
+    
+}

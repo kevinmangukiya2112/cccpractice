@@ -90,7 +90,6 @@ class Core_Model_Abstract{
     }
 
     public function save(){
-        // echo 333;
         $this->getResource()->save($this);
         return $this;
     }

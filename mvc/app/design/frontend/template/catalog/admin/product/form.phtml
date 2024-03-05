@@ -4,7 +4,7 @@ $data=$this->getProduct();
 // echo "<pre>";
 // print_r($data);
 ?>
-<form action="<?php echo $this->getUrl("admin/catalog_product/save")?>" method="post" class="product">
+<form action="<?php echo $this->getUrl("admin/catalog_product/save")?>" method="post" class="product" enctype="multipart/form-data">
     <label hidden for="pid">Product_id</label>
     <input hidden type="text" id="pid" name="pdata[product_id]" value="<?php echo $data->getProductId()?>" />
 
@@ -32,7 +32,10 @@ $data=$this->getProduct();
     <label for="category">Category</label>
     <select name="pdata[category_id]" id="category_id">
         <option value="1">1</option>
-        <option value="abc">abc</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
     </select>
 
     <label for="price">Price</label>

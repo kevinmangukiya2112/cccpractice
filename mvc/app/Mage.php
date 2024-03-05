@@ -51,6 +51,10 @@
           return "/phppractice/mvc/";
        }
 
+       public static function getImageUrl(){
+        return "/phppractice/mvc/media/";
+     }
+
        public static function getSingleton($className){
         if(isset(self::$singleton[$className])) {
           return self::$singleton[$className];

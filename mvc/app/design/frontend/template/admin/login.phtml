@@ -1,0 +1,30 @@
+<form action="" class="product" method="post" id="login-form">
+<label for="name">Username</label>
+<input type="text" id="name" name="adata[username]"/>
+<label for="pass">Password</label>
+<input type="text" id="pass" name="adata[password]"/>
+<input type="button" onclick="loginAction()" value="Login">
+</form>
+<script type="text/javascript">
+	function loginAction(btn) {
+		//console.log($('#login-form'));
+		var form = $($('#login-form')[0]);
+		console.log(form.serialize());
+		$.ajax({
+			url: form.action,
+			type:'POST',
+			// contentType: "application/json",
+			data: form.serialize()	
+		}).done(function(response) {
+			var output = JSON.parse(response);
+			// alert(response)
+            if(output.type=="success"){
+                alert(output.message);
+                window.location.href="<?php echo $this->getUrl("admin/catalog_product/list")?>";
+            }
+            else{
+                alert(output.message);
+            }
+		});
+	}
+</script>

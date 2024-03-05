@@ -3,6 +3,13 @@
 class Core_Controller_Front_Action{
 
     protected $_layout=null;
+    public function __construct(){
+        $this->init();
+    }
+
+    public function init(){
+        
+    }
     public function getLayout(){
         if(is_null($this->_layout)){
         return $this->_layout= Mage::getBlock('core/layout');
