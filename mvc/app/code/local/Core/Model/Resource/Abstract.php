@@ -4,6 +4,13 @@ class Core_Model_Resource_Abstract{
     protected $_tablename=null;
     protected $_primarykey=null;
 
+    public function __construct(){
+        $this->init();
+    }
+
+    public function init(){
+        return $this;
+    }
 
     public function getPrimarykey(){
         return $this->_primarykey;
@@ -31,7 +38,8 @@ class Core_Model_Resource_Abstract{
         }
         else{
             $sql= $this->insertSql($this->getTablename(),$data);
-            $this->getAdapter()->insert($sql);       
+            $id=$this->getAdapter()->insert($sql);   
+            $model->setId($id);   
         }
     }
 

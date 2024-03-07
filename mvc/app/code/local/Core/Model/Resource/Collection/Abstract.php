@@ -94,6 +94,13 @@ class Core_Model_Resource_Collection_Abstract{
             return "WHERE $whereCond"; 
     }
 
+    public function getFirstItem(){
+        if(!$this->_isLoaded){
+            $this->load() ;
+        }
+        return $this->_data[0];
+    }
+
     public function getData()
     {
         if (!$this->_isLoaded) {

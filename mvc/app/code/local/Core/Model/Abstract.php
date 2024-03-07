@@ -82,15 +82,26 @@ class Core_Model_Abstract{
     }
 
     public function addData($key, $value){
-
+        $this->_data[$key] = $value;
+        return $this;
     }
 
     public function removeData($key=null){
 
     }
 
+    protected function _beforesave(){
+        return $this;
+    }
+
+    protected function _aftersave(){
+        return $this;
+    }
+
     public function save(){
+        $this->_beforesave();
         $this->getResource()->save($this);
+        $this->_aftersave();
         return $this;
     }
 

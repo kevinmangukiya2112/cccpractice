@@ -35,17 +35,13 @@ class Admin_Controller_Account extends Core_Controller_Admin_Action{
                 $message=[
                     'type'=>"success",
                     'message'=>"login succesfull"
-
                 ];
             }
             else{
                 $message=[
                     'type'=>"error",
                     'message'=>"username password invalid"
-                    
-
-                ];
-                
+                ];    
             }
             echo json_encode($message);
         }
