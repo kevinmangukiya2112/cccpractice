@@ -1,0 +1,5 @@
+<?php
+
+class License_Model_Resource_Collection_Rate_License extends Core_Model_Resource_Collection_Abstract{
+
+}

@@ -1,0 +1,18 @@
+<form action="<?php echo $this->getUrl("license/license/add")?>" method="post">
+<?php Mage::getSingleton('');?>
+<label for="uname">User_name</label>
+<input type="text" name="cdata[user_name]" id="uname">
+<?php 
+$data=$this->getLicenceRate();?>
+<select name="cdata[state]" id="">
+<?php foreach($data->getData() as $_data):?>
+    <option name="cdata[state]"><?php echo $_data->getState()?></option>
+<?php endforeach;?> 
+</select>
+<br>
+<label for="type">Type</label>
+<br>
+<input type="checkbox" id="type" name="type[ll]">LL <br>
+<input type="checkbox" id="type" name="type[dl]">Dl <br>
+<input type="submit" name="submit" id="">
+</form>
