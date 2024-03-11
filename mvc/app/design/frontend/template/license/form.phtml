@@ -1,7 +1,6 @@
 <form action="<?php echo $this->getUrl("license/license/add")?>" method="post">
-<?php Mage::getSingleton('');?>
 <label for="uname">User_name</label>
-<input type="text" name="cdata[user_name]" id="uname">
+<input type="text" name="cdata[user_name]" id="uname" value="<?php echo Mage::getSingleton('core/session')->get('user_name') ?>">
 <?php 
 $data=$this->getLicenceRate();?>
 <select name="cdata[state]" id="">
@@ -12,7 +11,13 @@ $data=$this->getLicenceRate();?>
 <br>
 <label for="type">Type</label>
 <br>
-<input type="checkbox" id="type" name="type[ll]">LL <br>
-<input type="checkbox" id="type" name="type[dl]">Dl <br>
-<input type="submit" name="submit" id="">
+<?php $ltype=[];
+foreach($data->getData() as $_data):?>
+<?php $type=$_data->getLicenceType();
+$ltype[]=$type;?>
+<?php endforeach;
+for($i=0;$i<(count(array_unique($ltype)));$i++):?>
+<input type="checkbox" id="type" name="cdata[licence_type][<?php print_r($ltype[$i])?>]" value="<?php print_r(($ltype[$i]))?>"><?php print_r(($ltype[$i]))?> <br>
+<?php endfor;?>
+<input type="submit" name="submit">
 </form>

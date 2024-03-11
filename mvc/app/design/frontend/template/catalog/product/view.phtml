@@ -91,7 +91,7 @@ $product = Mage::getModel('catalog/product')->getCollection()
         <td>
             <form action="<?php echo $this->getUrl("sales/quote/add")."?id=".$product->getProductId()?>" method="post">
             <label for="Quntity">Quntity</label>
-            <input type="text" id="Quntity" name="quntity">
+            <input type="text" id="Quntity" name="qdata[qty]">
             <button class="btn btn-outline-primary">Cart</button>
             </form>
         </td>

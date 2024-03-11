@@ -1,0 +1,25 @@
+<?php $data=Mage::getModel("license/license")->getcollection();?>
+<table class="table table-stripped-dark">
+    <tr>
+    <td>Id</td>
+    <td>session_id</td>
+    <td>user_name</td>
+    <td>state</td>
+    <td>license_type</td>
+    <td>total_rate</td>
+    <td>created_at</td>
+    <td>delete</td>
+    </tr>
+<?php foreach ($data->getData() as $row):?>
+     <tr>
+        <td><?php echo $row->getId() ?></td>
+        <td><?php echo $row->getSessionId() ?></td>
+        <td><?php echo $row->getUserName() ?></td>
+        <td><?php echo $row->getState()?></td>
+        <td><?php echo $row->getLicenceType()?></td>
+        <td><?php echo $row->getTotalRate()?></td>
+        <td><?php echo $row->getCreatedAt()?></td>
+        <td><a href="<?php echo $this->getUrl("license/license/delete")."?id=".$row->getId()?>"><button class="btn btn-danger">Delete</button></a></td>
+     </tr>
+<?php endforeach;?>
+</table>

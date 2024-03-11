@@ -1,0 +1,17 @@
+<?php $data=Mage::getModel("license/license")->getcollection();?>
+<table class="table table-stripped-dark">
+    <tr>
+    <td>user_name</td>
+    <td>state</td>
+    <td>license_type</td>
+    <td>total_rate</td>
+    </tr>
+<?php foreach ($data->getData() as $row):?>
+     <tr>
+        <td><?php echo $row->getUserName() ?></td>
+        <td><?php echo $row->getState()?></td>
+        <td><?php echo $row->getLicenceType()?></td>
+        <td><?php echo $row->getTotalRate()?></td>
+     </tr>
+<?php endforeach;?>
+</table>

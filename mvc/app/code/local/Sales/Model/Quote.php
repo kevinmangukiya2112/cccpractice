@@ -34,12 +34,13 @@ class Sales_Model_Quote extends Core_Model_Abstract
             $this->load($quote->getId());
             // print_r($quote);
         }
-        
     }
     
     public function addProduct($product){
         $this->initQuote();
-        print_r($this);
+        // print_r($product);
+        // print_r($this->getId());
+        // die;
         if($this->getId()){
             Mage::getModel('sales/quote_item')->addItem($this,$product['product_id'],$product['qty']);
             $this->save();

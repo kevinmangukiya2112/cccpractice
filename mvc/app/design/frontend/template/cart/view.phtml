@@ -1,0 +1,7 @@
+<?php $id=Mage::getModel('cart/view')->item();
+echo "<pre>";
+$pid=[];
+foreach ($id as $_cart){
+    $pid[]=$_cart->getProductId();
+}
+print_r($pid);?>

@@ -7,4 +7,5 @@ class Sales_Controller_Quote extends Core_Controller_Front_Action{
         // print_r($data);
         Mage::getSingleton("sales/quote")->addProduct($data);
     }
+
 }

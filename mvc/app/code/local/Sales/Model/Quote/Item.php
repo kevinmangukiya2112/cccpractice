@@ -8,7 +8,6 @@ class Sales_Model_Quote_Item extends Core_Model_Abstract
             $this->addData('row_total',$row_total);
             $this->addData('price',$this->getProduct()->getPrice());
         }
-        
     }
 
     public function getProduct()
@@ -38,6 +37,5 @@ class Sales_Model_Quote_Item extends Core_Model_Abstract
         "row_total" => 0
        ];
        Mage::getModel('sales/quote_item')->setData($data)->save();
-
     }
 }
