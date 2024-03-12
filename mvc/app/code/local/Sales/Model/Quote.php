@@ -35,7 +35,7 @@ class Sales_Model_Quote extends Core_Model_Abstract
             // print_r($quote);
         }
     }
-    
+
     public function addProduct($product){
         $this->initQuote();
         // print_r($product);
@@ -48,7 +48,6 @@ class Sales_Model_Quote extends Core_Model_Abstract
     }
 
     public function getItemCollection(){
-       
        return Mage::getModel('sales/quote_item')->getCollection()
                     ->addFieldToFilter('quote_id',$this->getId());
 

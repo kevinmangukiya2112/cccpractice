@@ -1,7 +1,11 @@
-<?php $id=Mage::getModel('cart/view')->item();
+<?php $id=Mage::getModel('cart/view')->getitem();
+$total=Mage::getModel('cart/view')->getRawtotal();
 echo "<pre>";
+// print_r($id);
+print_r($total);
 $pid=[];
-foreach ($id as $_cart){
-    $pid[]=$_cart->getProductId();
-}
-print_r($pid);?>
+foreach ($id as $_cart){?>
+    <p>
+    <img src="<?php echo Mage::getImageUrl()."product/".$_cart->getImageLink()?>" alt="" height="100" width="100"><br>
+    price:: <?php echo $_cart->getPrice()?></p>
+<?php }?>
