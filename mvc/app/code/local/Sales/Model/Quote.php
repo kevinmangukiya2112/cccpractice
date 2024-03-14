@@ -8,7 +8,7 @@ class Sales_Model_Quote extends Core_Model_Abstract
         $this->collectionClass = "Sales_Model_Resource_Collection_Quote";
     }
 
-    protected function _beforeSave(){
+    protected function _beforesave(){
         $grandTotal = 0 ;
         foreach($this->getItemCollection()->getData() as $_item){
             $grandTotal += $_item->getRowTotal();
@@ -50,7 +50,6 @@ class Sales_Model_Quote extends Core_Model_Abstract
     public function getItemCollection(){
        return Mage::getModel('sales/quote_item')->getCollection()
                     ->addFieldToFilter('quote_id',$this->getId());
-
     }
     
 }

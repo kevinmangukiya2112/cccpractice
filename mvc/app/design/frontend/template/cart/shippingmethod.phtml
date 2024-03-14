@@ -1,0 +1,21 @@
+<form action="<?php echo $this->getUrl("sales/quote/savemethods") ?>"class="product" Method="post">
+    <div class="container">
+        <div class="boxes">
+            <p>Shipping Method</p><br>
+            <label for="smethod">Shipping Method</label>
+            <select name="sdata[shipping_method]" id="smethod" value="" required>
+                <option name="sdata[shipping_method]" value="Express">Express</option>
+                <option name="sdata[shipping_method]" value="Normal">Normal</option>
+            </select>
+        </div>
+        <div class="boxes">
+            <p>Payment Method</p><br>
+            <input type="radio" name="pdata[payment_method]" id="pmethod" value="Upi" required />UPI <br>
+            <input type="radio" name="pdata[payment_method]" id="pmethod" value="CreditCard" required />CreditCard <br>
+            <input type="radio" name="pdata[payment_method]" id="pmethod" value="DebitCard" required />DebitCard <br>
+            <label for="cnumber">Card Number</label>
+            <input type="number" name="pdata[card_number]"  id="cnumber"  required  />
+        </div>
+    </div>
+    <input type="submit">
+</form>

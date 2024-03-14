@@ -1,0 +1,98 @@
+<div class="contain">
+    <div class="box">
+        <?php $address = $this->getaddress(); ?>
+        <div>
+            <?php foreach ($address->getData() as $_address): ?>
+                <div id="asdasdasdasd" class="address-cards mb-5 address-box"
+                    data-json='{"baddress":"<?php echo $_address->getAddress(); ?>","bcity":"<?php echo $_address->getCity(); ?>","bcountry":"<?php echo $_address->getCountry(); ?>","bregion":"<?php echo $_address->getRegion(); ?>","bphone":"<?php echo $_address->getPhoneNo(); ?>"}'>
+                    <div>Address:
+                        <?php echo $_address->getAddress(); ?>
+                    </div>
+                    <div>City:
+                        <?php echo $_address->getCity(); ?>
+                    </div>
+                    <div>Region:
+                        <?php echo $_address->getRegion(); ?>
+                    </div>
+                    <div>Phone_No:
+                        <?php echo $_address->getPhoneNo() ?>
+                    </div>
+                    <div>Zip_Code:
+                        <?php echo $_address->getZipCode(); ?>
+                    </div>
+                    <div>Country:
+                        <?php echo $_address->getCountry(); ?>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+            <script type="text/javascript">
+                $('.address-cards').each((i, e) => {
+                    console.log($(e).attr('data-json'))
+                    $(e).click(() => {
+                        var _data = JSON.parse($(e).attr('data-json'))
+                        for (var key in _data) {
+                            if (_data.hasOwnProperty(key)) {
+                                $('#' + key).val(_data[key]);
+                            }
+                        }
+                    });
+                })
+            </script>
+        </div>
+        <div><a href="<?php echo $this->getUrl("customer/address/form") ?>"><button class="btn btn-success">Add
+                    Address</button></a></div>
+    </div>
+    <div class="box">
+        <form action="<?php echo $this->getUrl("sales/quote/addresssave") ?>" class="product">
+            <p>Billing</p><br>
+            <label for="email">Email</label>
+            <input type="text" id="email" name="add[email]" required />
+            <label for="baddress">Billing Address</label>
+            <input type="text" id="baddress" name="add[billing_address]" required />
+            <label for="bcity">Billing City</label>
+            <input type="text" id="bcity" name="add[billing_city]" required />
+            <label for="bregion">Billing Region</label>
+            <input type="text" id="bregion" name="add[billing_region]" required />
+            <label for="bcountry">Billing Country</label>
+            <input type="text" id="bcountry" name="add[billing_country]" required />
+            <label for="bphone">Billing Phone</label>
+            <input type="text" id="bphone" name="add[billing_phone]" required />
+            <p>Shipping</p><br>
+            <input type="radio" id="copyButton" style="height:10px">Use Same as above<br>
+            <label for="saddress">Shipping Address</label>
+            <input type="text" id="saddress" name="add[shipping_address]" required />
+            <label for="scity">Shipping City</label>
+            <input type="text" id="scity" name="add[shipping_city]" required />
+            <label for="sregion">Shipping Region</label>
+            <input type="text" id="sregion" name="add[shipping_region]" required />
+            <label for="scountry">Shipping Country</label>
+            <input type="text" id="scountry" name="add[shipping_country]" required />
+            <label for="sphone">Shipping Phone</label>
+            <input type="text" id="sphone" name="add[shipping_phone]" required />
+            <input type="submit">
+        </form>
+    </div>
+    <div class="box">
+        <p>Product In Cart</p>
+        <?php $id = Mage::getModel('sales/cart_view')->getProductCollection()->getProductitem();
+        $grandtotal = Mage::getModel('sales/cart_view')->getGrandtotal();
+        echo "<pre>";
+        // print_r($id);
+        // print_r($grandtotal);
+        foreach ($id as $_cart) { ?>
+            <div>
+                <img src="<?php echo Mage::getImageUrl() . "product/" . $_cart->getImageLink() ?>" alt="" height="50"
+                    width="50"><br>
+                price::
+                <?php echo $_cart->getPrice() ?><br>
+                Quntity::
+                <?php echo $_cart->getQty() ?>
+            </div>
+            RowTotal::
+            <?php echo $_cart->getRowTotal() ?><br>
+        <?php } ?>
+        <p>GrandTotal::
+            <?php echo $grandtotal ?><br>
+        </p>
+    </div>
+</div>

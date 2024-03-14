@@ -1,11 +1,14 @@
-<?php $id=Mage::getModel('cart/view')->getitem();
-$total=Mage::getModel('cart/view')->getRawtotal();
+<?php $id=Mage::getModel('sales/cart_view')->getProductCollection()->getProductitem();
+$grandtotal=Mage::getModel('sales/cart_view')->getGrandtotal();
 echo "<pre>";
 // print_r($id);
-print_r($total);
-$pid=[];
+// print_r($grandtotal);
 foreach ($id as $_cart){?>
-    <p>
+    <div>
     <img src="<?php echo Mage::getImageUrl()."product/".$_cart->getImageLink()?>" alt="" height="100" width="100"><br>
-    price:: <?php echo $_cart->getPrice()?></p>
+    price:: <?php echo $_cart->getPrice()?><br>
+    Quntity::<?php echo $_cart->getQty()?></div>
+    RowTotal::<?php echo $_cart->getRowTotal()?><br>
 <?php }?>
+GrandTotal::<?php echo $grandtotal?><br>
+<a href="<?php echo $this->getUrl("sales/quote/checkout") ?>"><button class="btn btn-primary">CheckOut</button></a>
