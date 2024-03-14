@@ -8,14 +8,18 @@
                 <option name="sdata[shipping_method]" value="Normal">Normal</option>
             </select>
         </div>
-        <div class="boxes">
+        <div class="boxes" id="paymentMethod">
             <p>Payment Method</p><br>
-            <input type="radio" name="pdata[payment_method]" id="pmethod" value="Upi" required />UPI <br>
-            <input type="radio" name="pdata[payment_method]" id="pmethod" value="CreditCard" required />CreditCard <br>
-            <input type="radio" name="pdata[payment_method]" id="pmethod" value="DebitCard" required />DebitCard <br>
+            <input type="radio" name="pdata[payment_method]" id="upi" value="Upi" required />UPI <br>
+            <input type="radio" name="pdata[payment_method]" id="debitcard" value="DebitCard" required />DebitCard <br>
+            <input type="radio" name="pdata[payment_method]" id="creditcard" value="CreditCard" required />CreditCard <br>
+            <div id="cnumber" >
             <label for="cnumber">Card Number</label>
-            <input type="number" name="pdata[card_number]"  id="cnumber"  required  />
+            <input type="number" name="pdata[card_number]"   required  />
+            </div>
+           
         </div>
     </div>
     <input type="submit">
 </form>
+

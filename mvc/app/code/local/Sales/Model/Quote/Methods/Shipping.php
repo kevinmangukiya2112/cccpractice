@@ -16,9 +16,5 @@ class Sales_Model_Quote_Methods_Shipping extends Core_Model_Abstract{
         $quote_id=Mage::getSingleton('core/session')->get('quote_id');
         $this->addData('quote_id',$quote_id);
     }
-
-    protected function _aftersave(){
-    }
-
     
 }

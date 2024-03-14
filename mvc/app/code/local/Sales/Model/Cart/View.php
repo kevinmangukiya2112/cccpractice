@@ -10,14 +10,12 @@ class Sales_Model_Cart_View extends Core_Model_Abstract{
         foreach($cart->getData() as $_item){
             $this->_productitems[]=Mage::getModel('catalog/product')->load($_item->getProductId());
             foreach($this->_productitems as $product){
-                // print_r($product);
                 if(!$product->getQty()){
                     $product->addData('qty',$_item->getQty());
                     $product->addData('row_total',$_item->getRowTotal());
                 }
             }
         }
-        // print_r($this->_productitmes);
         return $this;
      }
 

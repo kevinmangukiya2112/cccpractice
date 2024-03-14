@@ -1,5 +1,5 @@
-<?php $id=Mage::getModel('sales/cart_view')->getProductCollection()->getProductitem();
-$grandtotal=Mage::getModel('sales/cart_view')->getGrandtotal();
+<?php $id=$this->getProductCollection()->getProductitem();
+$grandtotal=$this->getGrandtotal();
 echo "<pre>";
 // print_r($id);
 // print_r($grandtotal);

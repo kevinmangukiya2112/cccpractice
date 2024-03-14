@@ -87,7 +87,8 @@ class Core_Model_Abstract{
     }
 
     public function removeData($key=null){
-
+        unset($this->_data[$key]);
+        return $this;
     }
 
     protected function _beforesave(){

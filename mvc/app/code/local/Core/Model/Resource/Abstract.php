@@ -50,7 +50,7 @@ class Core_Model_Resource_Abstract{
 
     public function insertSql($tablename,$data){
         echo "<pre>";
-        print_r($data);
+        // print_r($data);
         $keys=$values=[];
         foreach($data as $key=>$value){
             $keys[]="`{$key}`";

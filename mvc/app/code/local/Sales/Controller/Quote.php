@@ -42,7 +42,7 @@ class Sales_Controller_Quote extends Core_Controller_Front_Action{
         $layout=$this->getLayout();
         $child=$layout->getChild("content");
         $layout->getChild('head')->addCss('skin/css/shippingmethod/shippingmethod.css');
-        $layout->getChild('head')->addJs('skin/js/addressduplicate.js');
+        $layout->getChild('head')->addJs('skin/js/shippingmethod.js');
         $shippingmethod=$layout->createBlock("sales/cart_shippingmethod")->setTemplate("cart/shippingmethod.phtml");
         $child->addChild('shippingmethod',$shippingmethod);
         $layout->toHtml();
@@ -53,7 +53,21 @@ class Sales_Controller_Quote extends Core_Controller_Front_Action{
         $paymentmethod=$this->getRequest()->getParams('pdata');
         Mage::getSingleton("sales/quote_methods_shipping")->setData($shippingmethod)->save();
         Mage::getSingleton("sales/quote_methods_payment")->setData($paymentmethod)->save();
-        echo "Order Placed";
+        $this->setRedirect("page/index/index");
+    }
+
+    public function orderviewAction(){
+        $customerid=Mage::getSingleton('core/session')->get('customer_id');
+        if(!$customerid){
+            $this->setRedirect('customer/account/login');
+        }
+        else{
+        $layout=$this->getLayout();
+        $child=$layout->getChild("content");
+        $orderview=$layout->createBlock("sales/cart_orderview")->setTemplate("cart/orderview.phtml");
+        $child->addChild('orderview',$orderview);
+        $layout->toHtml();
+    }
     }
 
     

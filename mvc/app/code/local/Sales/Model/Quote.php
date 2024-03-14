@@ -51,5 +51,28 @@ class Sales_Model_Quote extends Core_Model_Abstract
        return Mage::getModel('sales/quote_item')->getCollection()
                     ->addFieldToFilter('quote_id',$this->getId());
     }
+
+    public function convert(){
+        $this->initQuote();
+        if ($this->getId()) {
+            $order_id=Mage::getModel('sales/order')->setData($this->getData())->save()->getId();
+            foreach ($this->getItemCollection()->getData() as $_item) {
+                $_item->addData('order_id',$order_id);
+                Mage::getModel('sales/order_item')->setData($_item->getData())->save();          
+            }
+            foreach ($this->getCustomerCollection()->getData() as $_item) {
+                $_item->addData('order_id',$order_id);
+                Mage::getModel('sales/order_customer')->setData($_item->getData())->save();
+            }
+        }
+        $this->addData('order_id',$order_id);
+        $this->save();
+    }
+    public function getCustomerCollection()
+    {
+        $quote_id=Mage::getSingleton('core/session')->get('quote_id');
+        return Mage::getModel('sales/quote_Customer')->getCollection()
+            ->addFieldToFilter('quote_id', $quote_id);
+    }
     
 }
