@@ -100,6 +100,7 @@ class Customer_Controller_Account extends Core_Controller_Front_Action{
 
     public function logoutAction(){
         Mage::getSingleton("core/session")->remove("customer_id");
+        Mage::getSingleton("core/session")->remove("quote_id");
         $this->setRedirect("page/index/index");
 
     }

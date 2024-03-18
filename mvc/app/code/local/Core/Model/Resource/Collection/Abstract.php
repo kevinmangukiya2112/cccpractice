@@ -98,7 +98,10 @@ class Core_Model_Resource_Collection_Abstract{
         if(!$this->_isLoaded){
             $this->load() ;
         }
-        return $this->_data[0];
+        if($this->_data){
+            return $this->_data[0];
+        }
+        return $this->_data;
     }
 
     public function getData()

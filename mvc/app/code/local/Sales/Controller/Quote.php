@@ -2,6 +2,21 @@
 
 class Sales_Controller_Quote extends Core_Controller_Front_Action{
 
+    protected $_loginActionRequired=[
+        'checkout',
+        'orderview'
+    ];
+
+    public function init(){
+        $action=$this->getRequest()->getActionName();
+        if(in_array($action,$this->_loginActionRequired)){
+            $customerid=Mage::getSingleton('core/session')->get('customer_id');
+            if(!$customerid){
+                $this->setRedirect('customer/account/login');
+            }
+        }
+    }
+
     public function addAction(){
         $data=$this->getRequest()->getParams("qdata");
         Mage::getSingleton("sales/quote")->addProduct($data);
@@ -17,11 +32,6 @@ class Sales_Controller_Quote extends Core_Controller_Front_Action{
     }
 
     public function checkoutAction(){
-        $customerid=Mage::getSingleton('core/session')->get('customer_id');
-        if(!$customerid){
-            $this->setRedirect('customer/account/login');
-        }
-        else{
         $layout=$this->getLayout();
         $child=$layout->getChild("content");
         $layout->getChild('head')->addCss('skin/css/product/form.css');
@@ -29,7 +39,6 @@ class Sales_Controller_Quote extends Core_Controller_Front_Action{
         $checkout=$layout->createBlock("sales/cart_checkout")->setTemplate("cart/checkout.phtml");
         $child->addChild('checkout',$checkout);
         $layout->toHtml();
-        }
     }
 
     public function addresssaveAction(){
@@ -53,23 +62,26 @@ class Sales_Controller_Quote extends Core_Controller_Front_Action{
         $paymentmethod=$this->getRequest()->getParams('pdata');
         Mage::getSingleton("sales/quote_methods_shipping")->setData($shippingmethod)->save();
         Mage::getSingleton("sales/quote_methods_payment")->setData($paymentmethod)->save();
-        $this->setRedirect("page/index/index");
+        $this->setRedirect("sales/quote/orderplaced");
     }
 
     public function orderviewAction(){
-        $customerid=Mage::getSingleton('core/session')->get('customer_id');
-        if(!$customerid){
-            $this->setRedirect('customer/account/login');
-        }
-        else{
         $layout=$this->getLayout();
         $child=$layout->getChild("content");
         $orderview=$layout->createBlock("sales/cart_orderview")->setTemplate("cart/orderview.phtml");
         $child->addChild('orderview',$orderview);
         $layout->toHtml();
     }
-    }
 
-    
+    public function orderplacedAction(){
+        $layout=$this->getLayout();
+        $child=$layout->getChild('content');
+        $layout->removeChild('header');
+        $layout->removeChild('footer');
+        $layout->getChild('head')->addCss('skin/css/cart/orderplaced.css');
+        $orderplaced=$layout->createBlock('sales/orderplaced');
+        $child->addChild('orderplaced',$orderplaced);
+        $layout->toHtml();
+    }
 
 }

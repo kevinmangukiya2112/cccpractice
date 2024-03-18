@@ -5,6 +5,7 @@ class Sales_Model_Cart_View extends Core_Model_Abstract{
     protected $_grandtotal;
 
      public function getProductCollection(){
+        Mage::getSingleton('sales/quote')->initQuote();
         $id=Mage::getSingleton('core/session')->get('quote_id');
         $cart=Mage::getModel('sales/quote_item')->getcollection()->addFieldToFilter('quote_id',$id);
         foreach($cart->getData() as $_item){

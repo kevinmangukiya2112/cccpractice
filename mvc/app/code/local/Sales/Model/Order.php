@@ -15,7 +15,7 @@ class Sales_Model_Order extends Core_Model_Abstract{
     protected function _beforesave(){
         $this->removeData('quote_id');
         $this->removeData('order_id');
-        $order_number='order'.time();
-        $this->addData('order_number',$order_number);
+        // $order_number='order'.time();
+        // $this->addData('order_number',$order_number);
     }
 }
