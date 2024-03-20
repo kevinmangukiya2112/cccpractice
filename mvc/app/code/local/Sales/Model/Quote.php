@@ -74,6 +74,7 @@ class Sales_Model_Quote extends Core_Model_Abstract
         $customer_id = (!$customer_id) ? 0 : $customer_id;
         if ($customer_id) {
             $customerQuote1 = Mage::getSingleton('sales/quote')->getCollection()->addFieldToFilter('customer_id', $customer_id)->addFieldToFilter('order_id', 0)->getFirstItem();
+            // print_r($customerQuote1);
             if (!$customerQuote1) {
                 $data1 = [
                     'quote_id' => $quoteId,
@@ -82,6 +83,8 @@ class Sales_Model_Quote extends Core_Model_Abstract
                 $this->setData($data1)->save();
             } else {
                 $customerQuote = Mage::getSingleton('sales/quote')->getCollection()->addFieldToFilter('customer_id', $customer_id)->addFieldToFilter('order_id', 0)->addFieldToFilter('quote_id', $customerQuote1->getQuoteId())->getFirstItem();
+                // echo "<pre>";
+                // print_r($customerQuote->getId());
                 $this->load($customerQuote->getId());
             }
         } else {
@@ -105,6 +108,24 @@ class Sales_Model_Quote extends Core_Model_Abstract
     {
         return Mage::getModel('sales/quote_item')->getCollection()
             ->addFieldToFilter('quote_id', $this->getId());
+    }
+    public function addShippingData($shippingData)
+    {
+        $this->initQuote();
+        $shipping = Mage::getModel('sales/quote_methods_shipping')->setData($shippingData)
+        ->addData('quote_id',$this->getId())
+        ->save();
+        $this->addData('shipping_id',$shipping->getId())->save();
+        return $this;
+    }
+    public function addPaymentData($paymentData)
+    {
+        $this->initQuote();
+        $payment = Mage::getModel('sales/quote_methods_payment')->setData($paymentData)
+        ->addData('quote_id',$this->getId())
+        ->save();
+        $this->addData('payment_id',$payment->getId())->save();
+        return $this;
     }
 
     public function convert()
@@ -145,9 +166,26 @@ class Sales_Model_Quote extends Core_Model_Abstract
             ->addData('shipping_id', $shipping->getId())
             ->addData('payment_id', $payment->getId())
             ->save();
+        $this->updateInventory();
         Mage::getSingleton('core/session')->set('order_id', $order->getId());
         $this->addData('order_id', $order->getId());
         $this->save();
+        Mage::getSingleton('core/session')->remove('quote_id');
+    }
+
+    public function updateInventory(){
+        $order=$this->getItemCollection()->getData();
+        foreach($order as $_qty){
+            $quntityinorder=$_qty->getQty();
+            $productmodel=Mage::getModel('catalog/product');
+            $product=$productmodel->load($_qty->getProductId(),"product_id");
+            $inventory=$product->getInventory();
+            $updateinventory=$inventory-$quntityinorder;
+            $product->addData('inventory',$updateinventory)
+            ->save();
+        }
+        
+        
     }
     public function getCustomerCollection()
     {

@@ -83,6 +83,8 @@ class Core_Model_Abstract{
 
     public function addData($key, $value){
         $this->_data[$key] = $value;
+        // echo"<pre>";
+        // print_r($this->_data);
         return $this;
     }
 

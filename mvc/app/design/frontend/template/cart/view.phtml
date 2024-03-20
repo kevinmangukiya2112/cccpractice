@@ -1,14 +1,49 @@
-<?php $id=$this->getProductCollection()->getProductitem();
-$grandtotal=$this->getGrandtotal();
-echo "<pre>";
+<?php $cartItem = $this->getCartItem()->getData();
+$quote = $this->getQuote();
+$productmodel = Mage::getModel('catalog/product');
+// echo "<pre>";
 // print_r($id);
 // print_r($grandtotal);
-foreach ($id as $_cart){?>
-    <div>
-    <img src="<?php echo Mage::getImageUrl()."product/".$_cart->getImageLink()?>" alt="" height="100" width="100"><br>
-    price:: <?php echo $_cart->getPrice()?><br>
-    Quntity::<?php echo $_cart->getQty()?></div>
-    RowTotal::<?php echo $_cart->getRowTotal()?><br>
-<?php }?>
-GrandTotal::<?php echo $grandtotal?><br>
-<a href="<?php echo $this->getUrl("sales/quote/checkout") ?>"><button class="btn btn-primary">CheckOut</button></a>
+if ($quote->getGrandTotal() == 0) { ?>
+    <?php echo "your cart is empty <br>"; ?>
+    <a href="<?php echo $this->getUrl('catalog/category/view') ?>"><button class="btn btn-primary">AddProduct</button></a>
+<?php } else {
+    foreach ($cartItem as $_item) { ?>
+        <div>
+            <?php
+            $product = $productmodel->load($_item->getProduct()->getProductId(), "product_id");
+            $inventory = $product->getInventory();
+            if ($_item->getQty() >= $inventory) {
+                echo "Items in your cart is more than our inventory so you have to remove it you can't buy it"; ?><br>
+                <img src="<?php echo Mage::getImageUrl() . "product/" . $_item->getProduct()->getImageLink() ?>" alt="" height="100"
+                    width="100"><br>
+                price::
+                <?php echo $_item->getProduct()->getPrice() ?><br>
+                Quntity::
+                <?php echo $_item->getQty() ?>
+            </div>
+            RowTotal::
+            <?php echo $_item->getRowTotal() ?><br>
+        <?php } else { ?>
+            <img src="<?php echo Mage::getImageUrl() . "product/" . $_item->getProduct()->getImageLink() ?>" alt="" height="100"
+                width="100"><br>
+            price::
+            <?php echo $_item->getProduct()->getPrice() ?><br>
+            Quntity::
+            <?php echo $_item->getQty() ?>
+            </div>
+            RowTotal::
+            <?php echo $_item->getRowTotal() ?><br>
+        <?php } ?>
+    <?php } ?>
+    GrandTotal::
+    <?php echo $quote->getGrandTotal() ?><br>
+    <button class="btn btn-primary" <?php foreach ($cartItem as $_item) {
+        $product = $productmodel->load($_item->getProduct()->getProductId(), "product_id");
+        $inventory = $product->getInventory();
+        if ($_item->getQty() >= $inventory) {
+            echo "disabled";
+        }
+    } ?>><a class="link"
+            href="<?php echo $this->getUrl("sales/quote/checkout") ?>">Checkout</a></button>
+<?php } ?>

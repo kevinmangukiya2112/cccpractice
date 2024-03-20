@@ -64,6 +64,9 @@ $product = Mage::getModel('catalog/product')->getCollection()
             min_price
         </td>
         <td>
+            Items In Inventory
+        </td>
+        <td>
             status
         </td>
         <td>update</td>
@@ -86,6 +89,7 @@ $product = Mage::getModel('catalog/product')->getCollection()
         <td><?php echo $product->getTotalCost()?></td>
         <td><?php echo $product->getMarginPercentage()?></td>
         <td><?php echo $product->getMinPrice()?></td>
+        <td><?php echo $product->getInventory()?></td>
         <td><?php echo $product->getStatus()?></td>
         <td><a href="<?php echo $this->getUrl("admin/catalog_product/form")."?id=".$product->getId()?>"><button class="btn btn-primary">Update</button></a></td>
         <td><a href="<?php echo $this->getUrl("admin/catalog_product/delete")."?id=".$product->getId()?>"><button class="btn btn-danger">Dalete</button></a></td>

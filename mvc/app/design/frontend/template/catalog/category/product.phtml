@@ -14,15 +14,7 @@ else{
         <td>
             product_id
         </td>
-        <!-- <td>
-            Edit
-        </td>
-        <td>
-            Delete
-        </td> -->
-
 <?php foreach ($product->getData() as $_product) {
-    // print_r($_product);
 ?>
      <tr>
         <td><img src='<?php echo Mage::getImageUrl()."product/".$_product->getImageLink() ?>' class="d-block w-100" alt="" height="100" width="100"></td>
@@ -30,7 +22,7 @@ else{
         <form action=" <?php echo $this->getUrl("sales/quote/add")?>" method="post">
         <input hidden type="text" name="qdata[product_id]" value="<?php echo $_product->getProductId()?>">
         <label for="qty">Quntity</label>
-        <input type="text" name="qdata[qty]" id="qty"/>    
+        <input type="number" name="qdata[qty]" id="qty" max="<?php echo $inventory=$_product->getInventory()*(0.5)?>"/>    
         <button type="submit" class="btn btn-outline-primary">AddCart</button>
         </form>
     </td>

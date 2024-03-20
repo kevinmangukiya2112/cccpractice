@@ -74,25 +74,25 @@
     </div>
     <div class="box">
         <p>Product In Cart</p>
-        <?php $id = Mage::getModel('sales/cart_view')->getProductCollection()->getProductitem();
-        $grandtotal = Mage::getModel('sales/cart_view')->getGrandtotal();
+        <?php $id = Mage::getBlock('sales/cart_view')->getCartItem()->getData();
+        $grandtotal = Mage::getBlock('sales/cart_view')->getQuote();
         echo "<pre>";
         // print_r($id);
         // print_r($grandtotal);
         foreach ($id as $_cart) { ?>
             <div>
-                <img src="<?php echo Mage::getImageUrl() . "product/" . $_cart->getImageLink() ?>" alt="" height="50"
+                <img src="<?php echo Mage::getImageUrl() . "product/" . $_cart->getProduct()->getImageLink() ?>" alt="" height="50"
                     width="50"><br>
                 price::
-                <?php echo $_cart->getPrice() ?><br>
+                <?php echo $_cart->getProduct()->getPrice() ?><br>
                 Quntity::
-                <?php echo $_cart->getQty() ?>
+                <?php echo $_cart->getProduct()->getQty() ?>
             </div>
             RowTotal::
-            <?php echo $_cart->getRowTotal() ?><br>
+            <?php echo $_cart->getProduct()->getRowTotal() ?><br>
         <?php } ?>
         <p>GrandTotal::
-            <?php echo $grandtotal ?><br>
+            <?php echo $grandtotal->getGrandTotal() ?><br>
         </p>
     </div>
 </div>

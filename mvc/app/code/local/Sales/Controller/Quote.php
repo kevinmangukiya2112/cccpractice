@@ -26,6 +26,7 @@ class Sales_Controller_Quote extends Core_Controller_Front_Action{
     public function viewAction(){
         $layout=$this->getLayout();
         $child=$layout->getChild("content");
+        $layout->getChild("head")->addCss('skin/css/cart/view.css');
         $cartView=$layout->createBlock("sales/cart_view")->setTemplate("cart/view.phtml");
         $child->addChild('cart',$cartView);
         $layout->toHtml();
@@ -60,8 +61,8 @@ class Sales_Controller_Quote extends Core_Controller_Front_Action{
     public function savemethodsAction(){
         $shippingmethod=$this->getRequest()->getParams('sdata');
         $paymentmethod=$this->getRequest()->getParams('pdata');
-        Mage::getSingleton("sales/quote_methods_shipping")->setData($shippingmethod)->save();
-        Mage::getSingleton("sales/quote_methods_payment")->setData($paymentmethod)->save();
+        Mage::getSingleton("sales/quote")->addShippingData($shippingmethod);
+        Mage::getSingleton("sales/quote")->addPaymentData($paymentmethod)->convert();
         $this->setRedirect("sales/quote/orderplaced");
     }
 
