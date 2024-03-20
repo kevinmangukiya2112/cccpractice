@@ -1,0 +1,18 @@
+<?php 
+
+$data=$this->getOrder();
+// print_r($data->getOrderId());
+?>
+<form action="<?php echo $this->getUrl('admin/order_orderview/save')?>" class='product'>
+<label hidden for="oid">Order_id</label>
+<input hidden type="number" name="data[order_id]" id="oid" value="<?php echo $data->getOrderId() ?>"/>
+<label for="stat">Status</label>
+<select name="data[status]" id="stat">
+    <option value="Pending">Pending</option>
+    <option value="Confirm">confirm</option>
+    <option value="Packeging">packeging</option>
+    <option value="Shipping">shipping</option>
+    <option value="Delivered">Delivered</option>
+</select>
+<input type="submit">
+</form>

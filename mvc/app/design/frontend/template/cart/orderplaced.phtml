@@ -1,17 +1,17 @@
 <?php $order_details=$this->getorderdetails()->getData();?>
-<body>
-    <div class="container">
-        <h1>Thank You for Your Order!</h1>
+<body class="bodyclass">
+    <div class="contain">
+        <h1 class="h1class">Thank You for Your Order!</h1>
         <p>Your order has been successfully placed. Below are the details:</p>
 
         <div class="order-details">
             <h2>Order Summary</h2>
-            <p><strong>Order Number:</strong> #<?php echo $order_details['order_number']?></p>
-            <p><strong>Order Date:</strong> March 18, 2024</p>
-            <p><strong>Total Amount:</strong> <?php echo $order_details['grand_total']?></p>
+            <p class="pclass"><strong>Order Number:</strong> #<?php echo $order_details['order_number']?></p>
+            <p class="pclass"><strong>Order Date:</strong> March 18, 2024</p>
+            <p class="pclass"><strong>Total Amount:</strong> <?php echo $order_details['grand_total']?></p>
         </div>
 
-        <p>For any inquiries regarding your order, please contact our customer support.</p>
+        <p class="pclass">For any inquiries regarding your order, please contact our customer support.</p>
 
         <div class="button-container">
             <a href="<?php echo $this->getUrl("page/index/index")?>" class="button">Home Page</a>

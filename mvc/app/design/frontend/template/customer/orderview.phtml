@@ -1,0 +1,31 @@
+<?php
+$order_customer=$this->getOrderCustomer();
+foreach($order_customer as $_customer){
+    $order=$this->getOrder($_customer->getOrderId());
+    ?>
+<body class="bodyclass">
+    <div class="contain">
+        <h1 class="h1class">Thank You for Your Order!</h1>
+        <p>Your order details are as per belove:</p>
+        <div class="order-details">
+            <h2>Order Summary</h2>
+            <p class="pclass"><strong>Email Id:</strong><?php echo $_customer->getEmail()?></p>
+            <p class="pclass"><strong>Order Number:</strong> #<?php echo $order->getOrderNumber()?></p>
+            <p class="pclass"><strong>Order Status:</strong> <?php echo $order->getStatus()?></p>
+            <?php $item=$this->getItem($_customer->getOrderId());
+            foreach($item as $_item){?>
+            <p class="pclass"><strong>Product Quntity:</strong> <?php echo $_item->getQty()?></p>
+            <?php } ?>
+            <p class="pclass"><strong>Total Amount:</strong> <?php echo $order->getGrandTotal()?></p>
+        </div>
+        <p class="pclass">For any inquiries regarding your order, please contact our customer support.</p>
+    </div>
+</body>
+<?php 
+}
+?>
+<div class="contain">
+<div class="button-container">
+            <a href="<?php echo $this->getUrl("page/index/index")?>" class="button">Home Page</a>
+</div>
+</div>

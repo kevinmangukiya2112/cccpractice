@@ -44,7 +44,7 @@ class Sales_Controller_Quote extends Core_Controller_Front_Action{
 
     public function addresssaveAction(){
         $data=$this->getRequest()->getParams('add');
-        Mage::getSingleton("sales/quote_address")->setData($data)->save();
+        Mage::getSingleton("sales/quote")->addcustomerorderadd($data);
         $this->setRedirect("sales/quote/shippingmethod");
     }
 
@@ -64,14 +64,6 @@ class Sales_Controller_Quote extends Core_Controller_Front_Action{
         Mage::getSingleton("sales/quote")->addShippingData($shippingmethod);
         Mage::getSingleton("sales/quote")->addPaymentData($paymentmethod)->convert();
         $this->setRedirect("sales/quote/orderplaced");
-    }
-
-    public function orderviewAction(){
-        $layout=$this->getLayout();
-        $child=$layout->getChild("content");
-        $orderview=$layout->createBlock("sales/cart_orderview")->setTemplate("cart/orderview.phtml");
-        $child->addChild('orderview',$orderview);
-        $layout->toHtml();
     }
 
     public function orderplacedAction(){

@@ -85,11 +85,9 @@
                     width="50"><br>
                 price::
                 <?php echo $_cart->getProduct()->getPrice() ?><br>
-                Quntity::
-                <?php echo $_cart->getProduct()->getQty() ?>
+                Quntity:: <?php echo $_cart->getQty() ?>
             </div>
-            RowTotal::
-            <?php echo $_cart->getProduct()->getRowTotal() ?><br>
+            RowTotal::<?php echo $_cart->getRowTotal() ?><br>
         <?php } ?>
         <p>GrandTotal::
             <?php echo $grandtotal->getGrandTotal() ?><br>

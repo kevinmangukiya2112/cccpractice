@@ -1,0 +1,28 @@
+<?php 
+echo "<pre>";
+$order=$this->getorder()->getData();
+foreach ($order as $_order){
+?>
+<body class="bodyclass">
+    <div class="contain">
+        <div class="order-details">
+            <h2>Order Summary</h2>
+            <p class="pclass"><strong>Customer Id:</strong> <?php echo $_order->getCustomerId()?></p>
+            <p class="pclass"><strong>Order Id:</strong> <?php echo $_order->getOrderId()?></p>
+            <p class="pclass"><strong>Order Number:</strong> #<?php echo $_order->getOrderNumber()?></p>
+            <p class="pclass"><strong>Order Status:</strong> <?php echo $_order->getStatus()?></p>
+            <?php $item=$this->getItem($_order->getOrderId());
+            foreach($item as $_item){?>
+            <p class="pclass"><strong>Product Id(Quntity):</strong> <?php echo $_item->getProductId()."(".$_item->getQty().")"?></p>
+            <?php } ?>
+            <p class="pclass"><strong>Total Amount:</strong> <?php echo $_order->getGrandTotal()?></p>
+            <a href="<?php echo $this->getUrl("admin/order_orderview/update")."?id=".$_order->getOrderId()?>" class="button">Update</a>
+        </div>
+    </div>
+</body>
+<?php }?>
+<div class="contain">
+<div class="button-container">
+            <a href="<?php echo $this->getUrl("admin/catalog_product/list")?>" class="button">Product Page</a>
+</div>
+</div>

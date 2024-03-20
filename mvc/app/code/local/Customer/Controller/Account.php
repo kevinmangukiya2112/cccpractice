@@ -102,6 +102,14 @@ class Customer_Controller_Account extends Core_Controller_Front_Action{
         Mage::getSingleton("core/session")->remove("customer_id");
         Mage::getSingleton("core/session")->remove("quote_id");
         $this->setRedirect("page/index/index");
+    }
 
+    public function orderviewAction(){
+        $layout=$this->getLayout();
+        $child=$layout->getChild("content");
+        $layout->getChild('head')->addCss('skin/css/cart/orderplaced.css');
+        $orderview=$layout->createBlock("customer/orderview")->setTemplate("customer/orderview.phtml");
+        $child->addChild('orderview',$orderview);
+        $layout->toHtml();
     }
 }

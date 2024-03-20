@@ -128,6 +128,14 @@ class Sales_Model_Quote extends Core_Model_Abstract
         return $this;
     }
 
+    public function addcustomerorderadd($addressdata){
+        $this->initQuote();
+        $cadd=Mage::getModel('sales/quote_address')->setData($addressdata)
+        ->addData('quote_id',$this->getId())
+        ->save();
+        return $this;
+    }
+
     public function convert()
     {
         $this->initQuote();
@@ -136,7 +144,6 @@ class Sales_Model_Quote extends Core_Model_Abstract
             $order = Mage::getSingleton('sales/order')->setData($this->getData())
                 ->removeData('quote_id')
                 ->removeData('order_id')
-                ->removeData('customer_id')
                 ->addData('order_number', $order_number)
                 ->save();
             foreach ($this->getItemCollection()->getData() as $_item) {
@@ -165,6 +172,7 @@ class Sales_Model_Quote extends Core_Model_Abstract
             ->addData('order_id', $order->getId())
             ->addData('shipping_id', $shipping->getId())
             ->addData('payment_id', $payment->getId())
+            ->addData('status','pending')
             ->save();
         $this->updateInventory();
         Mage::getSingleton('core/session')->set('order_id', $order->getId());
@@ -183,14 +191,12 @@ class Sales_Model_Quote extends Core_Model_Abstract
             $updateinventory=$inventory-$quntityinorder;
             $product->addData('inventory',$updateinventory)
             ->save();
-        }
-        
-        
+        } 
     }
     public function getCustomerCollection()
     {
         $quote_id = $this->getId();
-        return Mage::getModel('sales/quote_Customer')->getCollection()
+        return Mage::getModel('sales/quote_customer')->getCollection()
             ->addFieldToFilter('quote_id', $quote_id);
     }
 

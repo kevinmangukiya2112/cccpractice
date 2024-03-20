@@ -1,11 +1,11 @@
-body {
+.bodyclass {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f7f7f7;
 }
 
-.container {
+.contain {
     max-width: 600px;
     margin: 20px auto;
     padding: 20px;
@@ -14,12 +14,12 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-h1 {
+.h1class {
     text-align: center;
     color: #333;
 }
 
-p {
+.pclass {
     margin-bottom: 20px;
     line-height: 1.6;
     color: #666;
