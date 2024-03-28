@@ -16,15 +16,12 @@ class Admin_Controller_Account extends Core_Controller_Admin_Action{
             if(!$user_name){
                 $this->setRedirect("admin/account/login");
             }
-            else{
-                $this->setRedirect("admin/catalog_product/list");
-            }
         }
     }
 
     public function loginAction(){
         if(Mage::getSingleton("core/session")->get("admin_username")){
-            $this->setRedirect("admin/catalog_product/list");
+            $this->setRedirect("admin/account/dashboard");
         }
         else{
         if($this->getRequest()->isPost()){
@@ -64,4 +61,13 @@ class Admin_Controller_Account extends Core_Controller_Admin_Action{
         Mage::getSingleton('core/session')->remove('admin_username');
         $this->setRedirect('admin/account/login');
     }
+
+    public function dashboardAction(){
+        $layout=$this->getLayout();
+        $child=$layout->getChild('content');
+        $dashboard=$layout->createBlock('admin/dashboard');
+        $child->addChild('dashboard',$dashboard);
+        $layout->toHtml();
+    }
+
 }

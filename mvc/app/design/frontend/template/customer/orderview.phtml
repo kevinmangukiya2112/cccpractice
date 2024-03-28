@@ -19,6 +19,9 @@ foreach($order_customer as $_customer){
             <p class="pclass"><strong>Total Amount:</strong> <?php echo $order->getGrandTotal()?></p>
         </div>
         <p class="pclass">For any inquiries regarding your order, please contact our customer support.</p>
+        <?php if($order->getStatus()!='shipping' && $order->getStatus()!='Delivered' && $order->getStatus()!='cancelled' && $order->getStatus()!='Cancellation Request' && $order->getStatus()!='Rejected'){?>
+        <a href="<?php echo $this->getUrl('sales/quote/cancelorder')."?id=". $_customer->getOrderId() ?>"><button class="btn btn-danger">Cancel Order</button></a>
+        <?php }?>
     </div>
 </body>
 <?php 

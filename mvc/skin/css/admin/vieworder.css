@@ -1,0 +1,68 @@
+.bodyclass {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f7f7;
+    display: flex;
+    flex-direction: column;
+}
+
+.contain {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.h1class {
+    text-align: center;
+    color: #333;
+}
+
+.pclass {
+    margin-bottom: 20px;
+    line-height: 1.6;
+    color: #666;
+}
+
+.order-details {
+    margin-top: 30px;
+    border-top: 2px solid #ddd;
+    padding-top: 20px;
+}
+
+.order-details h2 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.order-details p {
+    margin-bottom: 10px;
+}
+
+.button {
+    display: inline-block;
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
+
+.parent {
+    position: relative; /* Make the parent div a positioning context */
+    width: auto;
+    height: auto;
+    border: 1px solid black; 
+}
+.cancel_request{
+    position: absolute;
+    top:0;
+    right: 0;
+}

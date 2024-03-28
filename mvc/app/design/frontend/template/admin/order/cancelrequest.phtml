@@ -1,15 +1,6 @@
 <?php 
 echo "<pre>";
-$order=$this->getorder()->getData();
-$count=0;?>
-<div class="parent">
-    <div class="cancel_request"><a href="<?php echo $this->getUrl('admin/order_orderview/cancel')?>"><button class="btn btn-primary">CancelRequest(<?php foreach($order as $_order){
-    if($_order->getStatus()=='Cancellation Request'){
-    $count++;
-    }
-}
-    print_r($count);?>)</button></a>
-</div>
+$order=$this->getorder()->getData();?>
 <table class="table table-striped">
         <tr>
             <td>Customer_id</td>
@@ -18,7 +9,8 @@ $count=0;?>
             <td>Status</td>
             <td>PID(Quntity)</td>
             <td>Grand Total</td>
-            <td>Update</td>
+            <td>Accept</td>
+            <td>Reject</td>
         </tr>
 <?php
 foreach ($order as $_order){
@@ -33,11 +25,9 @@ foreach ($order as $_order){
              echo $_item->getProductId()."(".$_item->getQty().")";
              }?> </td>
             <td> <?php echo $_order->getGrandTotal()?></td>
-            <td><a href="<?php echo $this->getUrl("admin/order_orderview/update")."?id=".$_order->getOrderId()?>" class="button">Update</a></td>
+            <td><a href="<?php echo $this->getUrl("admin/order_orderview/acceptcancelation")."?id=".$_order->getOrderId()?>" ><button class="btn btn-success">Aceept</button></a></td>
+            <td><a href="<?php echo $this->getUrl("admin/order_orderview/rejectcancelation")."?id=".$_order->getOrderId()?>" ><button class="btn btn-danger">Reject</button></a></td>
             </tr>
 <?php }?>
 </table>
-<div class="button-container">
-            <a href="<?php echo $this->getUrl("admin/catalog_product/list")?>" class="button">Product Page</a>
-</div>
-</div>
+

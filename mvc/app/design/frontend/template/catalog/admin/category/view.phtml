@@ -28,7 +28,7 @@ else{
         <td><?php echo $_product->getCategoryId()?></td>
         <td><?php echo $_product->getCategoryName()?></td>
         <td><?php echo $_product->getStatus()?></td>
-        <td><a href="<?php echo $this->getUrl("catalog/category/viewproduct")."?id=" .$_product->getCategoryId()?>"><button class="btn btn-outline-primary">Product</button></a></td>
+        <td><a href="<?php echo $this->getUrl("admin/catalog_category/viewproduct")."?id=" .$_product->getCategoryId()?>"><button class="btn btn-outline-primary">Product</button></a></td>
      </tr>
 <?php }?>
 </table>

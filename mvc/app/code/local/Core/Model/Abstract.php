@@ -102,6 +102,8 @@ class Core_Model_Abstract{
     }
 
     public function save(){
+        // print_r($this);
+        // die;
         $this->_beforesave();
         $this->getResource()->save($this);
         $this->_aftersave();

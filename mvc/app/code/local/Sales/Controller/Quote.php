@@ -4,7 +4,8 @@ class Sales_Controller_Quote extends Core_Controller_Front_Action{
 
     protected $_loginActionRequired=[
         'checkout',
-        'orderview'
+        'orderview',
+        'view'
     ];
 
     public function init(){
@@ -23,6 +24,19 @@ class Sales_Controller_Quote extends Core_Controller_Front_Action{
         $this->setRedirect("sales/quote/view");
     }
 
+    public function saveItemAction()
+    {
+        $postData = $this->getRequest()->getParams();
+        $QuoteModel = Mage::getModel('sales/quote_item');
+        $QuoteModel->setData($postData)->save();
+        $this->updateAction();
+    }
+    public function updateAction()
+    {
+        $postData = $this->getRequest()->getParams();
+        Mage::getSingleton('sales/quote')->updateProduct($postData);
+    }
+
     public function viewAction(){
         $layout=$this->getLayout();
         $child=$layout->getChild("content");
@@ -30,6 +44,13 @@ class Sales_Controller_Quote extends Core_Controller_Front_Action{
         $cartView=$layout->createBlock("sales/cart_view")->setTemplate("cart/view.phtml");
         $child->addChild('cart',$cartView);
         $layout->toHtml();
+    }
+
+    public function deleteAction(){
+        $id = $this->getRequest()->getParams('id',0);
+        Mage::getModel('sales/quote_item')->load($id)->delete();
+        $this->updateAction();
+        $this->setRedirect('sales/quote/view');
     }
 
     public function checkoutAction(){
@@ -75,6 +96,12 @@ class Sales_Controller_Quote extends Core_Controller_Front_Action{
         $orderplaced=$layout->createBlock('sales/orderplaced');
         $child->addChild('orderplaced',$orderplaced);
         $layout->toHtml();
+    }
+
+    public function cancelorderAction(){
+        $data=$this->getRequest()->getParams('id');
+        Mage::getSingleton('sales/quote')->cancelorder($data);
+        $this->setRedirect("customer/account/orderview");
     }
 
 }

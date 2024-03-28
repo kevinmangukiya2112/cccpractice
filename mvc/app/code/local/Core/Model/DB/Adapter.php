@@ -78,11 +78,4 @@ class Core_Model_DB_Adapter{
         
     }
 
-    public function query($query){
-
-    }
-
-    
-
-
 }

@@ -1,49 +1,140 @@
 <?php $cartItem = $this->getCartItem()->getData();
 $quote = $this->getQuote();
-$productmodel = Mage::getModel('catalog/product');
 // echo "<pre>";
-// print_r($id);
+// print_r($quote->getId());
 // print_r($grandtotal);
-if ($quote->getGrandTotal() == 0) { ?>
-    <?php echo "your cart is empty <br>"; ?>
-    <a href="<?php echo $this->getUrl('catalog/category/view') ?>"><button class="btn btn-primary">AddProduct</button></a>
-<?php } else {
-    foreach ($cartItem as $_item) { ?>
-        <div>
-            <?php
-            $product = $productmodel->load($_item->getProduct()->getProductId(), "product_id");
-            $inventory = $product->getInventory();
-            if ($_item->getQty() >= $inventory) {
-                echo "Items in your cart is more than our inventory so you have to remove it you can't buy it"; ?><br>
-                <img src="<?php echo Mage::getImageUrl() . "product/" . $_item->getProduct()->getImageLink() ?>" alt="" height="100"
-                    width="100"><br>
-                price::
-                <?php echo $_item->getProduct()->getPrice() ?><br>
-                Quntity::
-                <?php echo $_item->getQty() ?>
+if ($quote->getGrandTotal() != 0) {
+    ?>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>Product Image</th>
+                                <th>Product Name</th>
+                                <th>Color</th>
+                                <th>Size</th>
+                                <th>Description</th>
+                                <th>Price</th>
+                                <th>Total Price</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($cartItem as $_item): ?>
+                                <?php $product = Mage::getModel('catalog/product')->load('product_id', $_item->getProductId()); ?>
+                                <tr>
+                                    <td hidden>
+                                        <?php echo $_item->getItemId(); ?>
+                                    </td>
+                                    <td><img src="<?php echo Mage::getImageUrl() . "product/" . $_item->getProduct()->getImageLink() ?>"
+                                            alt="" height="100" width="100"></td>
+                                    <td>
+                                        <?php echo $product->getName(); ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $product->getColor(); ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $product->getSize(); ?>
+                                    </td>
+                                    <td><span>
+                                            <?php echo $product->getDescription(); ?>
+                                        </span></td>
+                                    <td>
+                                        <?php echo $product->getPrice(); ?>
+                                    </td>
+                                    <td>
+                                        <?php echo $_item->getRowTotal(); ?>
+                                    </td>
+                                    <td class="cart_edit">
+                                        <div class="cart_minus" id="minus"><i style="font-size:24px" class="fa">&#xf068;</i>
+                                        </div>
+                                        <span class="count">
+                                            <?php echo $_item->getQty(); ?>
+                                        </span>
+                                        <div class="cart_plus" id="plus"><i style="font-size:24px" class="fa">&#xf067;</i></div>
+                                    </td>
+                                    <td><a href="<?php echo $this->getUrl('sales/quote/delete') . "?id=" . $_item->getItemId(); ?>"
+                                            name="delete" class="btn btn-danger btn-sm">Delete</a></td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                    <div class="total_price">
+                        <span>Final Price:
+                            <?php echo $quote->getGrandTotal() ?>
+                        </span>
+                    </div>
+                    <?php if ($_item->getProduct()->getInventory() <= $_item->getQty()) {
+                                echo "You have More item in cart than our Stock,First Remove Some Item to place order";
+                            } ?> <br>
+                    <button class="btn btn-danger btn-sm"
+                            <?php if ($_item->getProduct()->getInventory() <= $_item->getQty()) {
+                                echo "disabled";
+                            } ?>><a class="link" href="<?php echo $this->getUrl('sales/quote/checkout') ?>">Checkout</a></button>
+                </div>
             </div>
-            RowTotal::
-            <?php echo $_item->getRowTotal() ?><br>
-        <?php } else { ?>
-            <img src="<?php echo Mage::getImageUrl() . "product/" . $_item->getProduct()->getImageLink() ?>" alt="" height="100"
-                width="100"><br>
-            price::
-            <?php echo $_item->getProduct()->getPrice() ?><br>
-            Quntity::
-            <?php echo $_item->getQty() ?>
-            </div>
-            RowTotal::
-            <?php echo $_item->getRowTotal() ?><br>
-        <?php } ?>
-    <?php } ?>
-    GrandTotal::
-    <?php echo $quote->getGrandTotal() ?><br>
-    <button class="btn btn-primary" <?php foreach ($cartItem as $_item) {
-        $product = $productmodel->load($_item->getProduct()->getProductId(), "product_id");
-        $inventory = $product->getInventory();
-        if ($_item->getQty() >= $inventory) {
-            echo "disabled";
-        }
-    } ?>><a class="link"
-            href="<?php echo $this->getUrl("sales/quote/checkout") ?>">Checkout</a></button>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.cart_plus').on('click', function () {
+                let countElement = $(this).siblings('.count');
+                let count = parseInt(countElement.text());
+                if (count < 10) {
+                    count++;
+                    countElement.text(count);
+                    let itemId = $(this).closest('tr').find('td:eq(0)').text(); // Get the product ID from the table row
+                    let productId = $(this).closest('tr').find('td:eq(2)').text(); // Get the product ID from the table row
+                    updateCart(productId, count, itemId);
+                }
+            });
+
+            $('.cart_minus').on('click', function () {
+                let countElement = $(this).siblings('.count');
+                let count = parseInt(countElement.text());
+
+                if (count > 1) {
+                    count--;
+                    countElement.text(count);
+
+                    let itemId = $(this).closest('tr').find('td:eq(0)').text(); // Get the product ID from the table row
+                    let productId = $(this).closest('tr').find('td:eq(2)').text(); // Get the product ID from the table row
+                    updateCart(productId, count, itemId);
+                }
+            });
+            function updateCart(productId, quantity, itemId) {
+                $.ajax({
+                    url: "<?php echo $this->getUrl('sales/quote/saveItem'); ?>",
+                    type: "POST",
+                    data: {
+                        item_id: itemId,
+                        quote_id: "<?php echo $quote->getId() ?>",
+                        product_id: productId,
+                        qty: quantity
+                    },
+                    success: function (response) {
+                        // Handle success response if needed
+                        window.location.href = "<?php echo $this->getUrl('sales/quote/view'); ?>";
+
+                    },
+                    error: function (xhr, status, error) {
+                        // Handle error
+                        console.error(xhr.responseText);
+                    }
+                });
+            }
+        });
+    </script>
+    <?php
+} else {
+    echo "first add item in cart <br>";
+    ?>
+    <a href="<?php echo $this->getUrl('catalog/product/view') ?>"><button class="btn btn-primary">Add</button></a>
 <?php } ?>

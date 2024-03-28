@@ -1,20 +1,10 @@
-<?php
-$product = Mage::getModel('catalog/product')->getCollection()
-// ->addFieldToFilter('name',['eq'=>'jk'])
-// ->addFieldToFilter('groupby','name')
-// ->addFieldToFilter('orderbydsc','name');
-    // ->addFieldToFilter('name',['eq'=>'jk'])
-    // ->addFieldToFilter('name',['like' => 'bet'])
-    // ->addFieldToFilter('name',['gt' => 'bet'])
-    // ->addFieldToFilter('name',['in' => 'bet'])
-    // ->addFieldToFilter('name',['between' => 'bet'])
-    // ->addFieldToFilter('name',['orderby'=> 'name'])
-    ;
-    //  print_r($product->getData());
-// foreach($productCollection->getData() as $product) {
-//     print_r($product->getStatus());
-//     // print_r($product);
-// }
+<?php //$category=Mage::getModel("catalog/category")->getCollection();
+// print_r($category);
+$product=$this->getProduct();
+if(!$product->getData()){
+    echo "That category product doesn't exist in our list";
+}
+else{
 ?>
 <table class="table table-striped table-dark">
     <tr>
@@ -64,11 +54,13 @@ $product = Mage::getModel('catalog/product')->getCollection()
             min_price
         </td>
         <td>
-            status
+            Items In Inventory
         </td>
         <td>
-            add to cart
+            status
         </td>
+        <td>update</td>
+        <td>delete</td>
     </tr>
     <?php foreach($product->getData() as $product) : ?>
     <tr>
@@ -87,15 +79,11 @@ $product = Mage::getModel('catalog/product')->getCollection()
         <td><?php echo $product->getTotalCost()?></td>
         <td><?php echo $product->getMarginPercentage()?></td>
         <td><?php echo $product->getMinPrice()?></td>
+        <td><?php echo $product->getInventory()?></td>
         <td><?php echo $product->getStatus()?></td>
-        <td>
-        <form action=" <?php echo $this->getUrl("sales/quote/add")?>" method="post">
-        <input hidden type="text" name="qdata[product_id]" value="<?php echo $product->getProductId()?>">
-        <label for="qty">Quntity</label>
-        <input type="number" name="qdata[qty]" id="qty" max="<?php echo $inventory=$product->getInventory()*(0.5)?>"/>    
-        <button type="submit" class="btn btn-outline-primary">AddCart</button>
-        </form>
-        </td>
+        <td><a href="<?php echo $this->getUrl("admin/catalog_product/form")."?id=".$product->getId()?>"><button class="btn btn-primary">Update</button></a></td>
+        <td><a href="<?php echo $this->getUrl("admin/catalog_product/delete")."?id=".$product->getId()?>"><button class="btn btn-danger">Dalete</button></a></td>
     </tr> 
     <?php endforeach; ?> 
 </table>
+<?php } ?>

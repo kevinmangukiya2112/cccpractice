@@ -34,4 +34,20 @@ class Admin_Controller_Catalog_Category extends Core_Controller_Admin_Action{
         $child->addChild('categorylist',$categorylist);
         $layout->toHtml();
     }
+
+    public function viewAction(){
+        $layout= $this->getLayout();
+        $child=$layout->getChild('content');
+        $categorylist=$layout->createBlock('catalog/Admin_category_view/list')->setTemplate('catalog/admin/category/view.phtml');
+        $child->addChild('categorylist',$categorylist);
+        $layout->toHtml();
+    }
+
+    public function viewproductAction(){
+        $layout= $this->getLayout();
+        $child=$layout->getChild('content');
+        $productlist=$layout->createBlock('catalog/Admin_category_view/list')->setTemplate('catalog/admin/category/product.phtml');
+        $child->addChild('viewproduct',$productlist);
+        $layout->toHtml();
+    }
 }

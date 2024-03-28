@@ -2,7 +2,7 @@
 // print_r($category);
 $product=$this->getProduct();
 if(!$product->getData()){
-    echo "That category product doesn't exist in out list";
+    echo "That category product doesn't exist in our list";
 }
 else{
 ?>
@@ -22,7 +22,7 @@ else{
         <form action=" <?php echo $this->getUrl("sales/quote/add")?>" method="post">
         <input hidden type="text" name="qdata[product_id]" value="<?php echo $_product->getProductId()?>">
         <label for="qty">Quntity</label>
-        <input type="number" name="qdata[qty]" id="qty" max="<?php echo $inventory=$_product->getInventory()*(0.5)?>"/>    
+        <input type="number" name="qdata[qty]" id="qty" max="<?php //echo $inventory=$_product->getInventory()*(0.5)?>"/>    
         <button type="submit" class="btn btn-outline-primary">AddCart</button>
         </form>
     </td>

@@ -16,9 +16,15 @@ class Sales_Model_Quote extends Core_Model_Abstract
             $grandTotal += $_item->getRowTotal();
             // var_dump($_item->getRowTotal());
         }
-        ;
         $this->addData('grand_total', $grandTotal);
     }
+
+    public function updateProduct($request)
+    {
+        $this->initQuote();
+        $this->save();
+    }
+
 
     // public function initQuote()
     // {
@@ -73,18 +79,22 @@ class Sales_Model_Quote extends Core_Model_Abstract
         $customer_id = Mage::getSingleton('core/session')->get('customer_id');
         $customer_id = (!$customer_id) ? 0 : $customer_id;
         if ($customer_id) {
-            $customerQuote1 = Mage::getSingleton('sales/quote')->getCollection()->addFieldToFilter('customer_id', $customer_id)->addFieldToFilter('order_id', 0)->getFirstItem();
+            $customerQuote1 = Mage::getSingleton('sales/quote')
+            ->getCollection()->addFieldToFilter('customer_id', $customer_id)
+            ->addFieldToFilter('order_id', 0)->getFirstItem();
             // print_r($customerQuote1);
-            if (!$customerQuote1) {
+            if (!$customerQuote1){
                 $data1 = [
                     'quote_id' => $quoteId,
                     'customer_id' => $customer_id
                 ];
                 $this->setData($data1)->save();
             } else {
-                $customerQuote = Mage::getSingleton('sales/quote')->getCollection()->addFieldToFilter('customer_id', $customer_id)->addFieldToFilter('order_id', 0)->addFieldToFilter('quote_id', $customerQuote1->getQuoteId())->getFirstItem();
-                // echo "<pre>";
-                // print_r($customerQuote->getId());
+                $customerQuote = Mage::getSingleton('sales/quote')
+                ->getCollection()->addFieldToFilter('customer_id', $customer_id)
+                ->addFieldToFilter('order_id', 0)
+                ->addFieldToFilter('quote_id', $customerQuote1->getQuoteId())
+                ->getFirstItem();
                 $this->load($customerQuote->getId());
             }
         } else {
@@ -102,6 +112,10 @@ class Sales_Model_Quote extends Core_Model_Abstract
                 $this->load($quote->getId());
             }
         }
+    }
+
+    public function mergequote(){
+
     }
 
     public function getItemCollection()
@@ -167,12 +181,13 @@ class Sales_Model_Quote extends Core_Model_Abstract
             ->removeData('payment_id')
             ->addData('order_id', $order->getId())
             ->save();
+            $Default_order_status=Sales_Model_Order::DEFAULT_ORDER_STATUS;
         $order = Mage::getSingleton('sales/order')
             ->setData($order->getData())
             ->addData('order_id', $order->getId())
             ->addData('shipping_id', $shipping->getId())
             ->addData('payment_id', $payment->getId())
-            ->addData('status','pending')
+            ->addData('status',$Default_order_status)
             ->save();
         $this->updateInventory();
         Mage::getSingleton('core/session')->set('order_id', $order->getId());
@@ -193,6 +208,7 @@ class Sales_Model_Quote extends Core_Model_Abstract
             ->save();
         } 
     }
+
     public function getCustomerCollection()
     {
         $quote_id = $this->getId();
@@ -211,6 +227,14 @@ class Sales_Model_Quote extends Core_Model_Abstract
         $quote_id = $this->getId();
         return Mage::getSingleton('sales/quote_methods_payment')
             ->load($this->getId(), "quote_id");
+    }
+
+    public function cancelorder($order_id){
+        $data=[
+            'order_id'=>$order_id,
+            'status'=>Customer_Model_Order::Order_Cancel_Request
+        ];
+        Mage::getModel('sales/order')->setData($data)->save();
     }
 
 }

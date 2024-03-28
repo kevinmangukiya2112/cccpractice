@@ -2,6 +2,8 @@
 
 class Sales_Model_Order extends Core_Model_Abstract{
 
+    const DEFAULT_ORDER_STATUS='pending';
+
     public function __construct(){
         $this->init();
     }
@@ -12,10 +14,4 @@ class Sales_Model_Order extends Core_Model_Abstract{
         $this->collectionClass="Sales_Model_Resource_Collection_Order";
     }
 
-    // protected function _beforesave(){
-    //     $this->removeData('quote_id');
-    //     $this->removeData('order_id');
-    //     // $order_number='order'.time();
-    //     // $this->addData('order_number',$order_number);
-    // }
 }

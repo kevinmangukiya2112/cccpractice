@@ -47,7 +47,6 @@ class Core_Model_Resource_Collection_Abstract{
         return $this;
     }
 
-
     public function getOrderFilterSql($filter){
         foreach($filter as $col => $val){
             return "ORDER BY `{$col}` {$val} ";
@@ -56,6 +55,10 @@ class Core_Model_Resource_Collection_Abstract{
 
     public function getGroupFilterSql($filter){
         return "GROUP BY `{$filter}`";
+    }
+
+    public function getDistinctFilterSql($filter){
+        return "DISTINCT `{$filter}`";
     }
 
     public function getWhereFilterSql($filter){
@@ -121,7 +124,6 @@ class Core_Model_Resource_Collection_Abstract{
 
     public function addFieldToFilter($column, $filter)
     {
-        
         $this->_select['where'][$column][] = $filter;
         return $this;
     }
@@ -138,6 +140,12 @@ class Core_Model_Resource_Collection_Abstract{
         $this->_select['group'] = $column;
         return $this;
     }
+
+    public function adddistinctFilter($column){
+        $this->_select['distinct']=$column;
+        return $this;
+    }
+
 
     // public function addLimitOffsetFilter($limit){
     //     print_r($limit);

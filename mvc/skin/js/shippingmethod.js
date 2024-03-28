@@ -1,7 +1,4 @@
-
-
 $(document).ready(function(){
-    $('#cnumber').hide();
     $('#cnumber').hide();
     var creditcard = $('#creditcard').val();
     var debitcard = $('#debitcard').val();
